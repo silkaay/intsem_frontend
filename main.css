@@ -1,6 +1,11 @@
 .mit-lightblue {
     background-color: #8fabca;
 }
+.mit-active {
+    color: #283b70 !important;
+    text-decoration: underline;
+}
+
 .mit-head {
     height: 1.5em;
 }
