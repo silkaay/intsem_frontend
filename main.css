@@ -3,9 +3,13 @@
 }
 .mit-active {
     color: #283b70 !important;
-    text-decoration: underline;
 }
 
 .mit-head {
     height: 1.5em;
+    
+}
+
+.headpad {
+    padding: 1.5em;
 }
