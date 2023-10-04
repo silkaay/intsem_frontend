@@ -1,2 +1,2 @@
 # intsem_frontend
-Hallo Frau Simic
+Hier können die Frontend Dateien eingesehen werden
