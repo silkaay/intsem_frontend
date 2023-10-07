@@ -4,6 +4,8 @@
 .mit-active {
     color: #283b70 !important;
     border-bottom: 3px solid #283b70;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
 }
 .mit-blue {
     color: #283b70 !important;
@@ -11,7 +13,6 @@
 
 .mit-head {
     height: 1.5em;
-    
 }
 
 .headpad {
