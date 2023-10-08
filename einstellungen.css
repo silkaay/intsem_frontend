@@ -45,3 +45,11 @@ h2,p,b{
     color: white;
 
 }
+#buttonAccountLoeschen{
+    margin-top: 2%;
+    background-color: red;
+    color: white;
+}
+#accountLoeschenBestaetigung{
+    margin: 2%;
+}
