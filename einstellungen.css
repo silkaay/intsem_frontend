@@ -38,12 +38,15 @@ h2,p,b{
 .row{
     margin-right: 0%;
 }
-
+#buttonAllgInfoBearbeiten{
+    margin: 2%;
+    background-color: #283b70;
+    color: white;
+}
 #buttonPasswortaendern{
     margin: 2%;
     background-color: #283b70;
     color: white;
-
 }
 #buttonAccountLoeschen{
     margin-top: 2%;
