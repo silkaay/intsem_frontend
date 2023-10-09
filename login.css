@@ -1,0 +1,16 @@
+.log-style {
+    width: 30rem;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+.imgstyle {
+   
+}
+#link-style {
+    text-decoration: underline dotted;
+}
+#link-style:hover {
+    opacity: 60%;
+}
