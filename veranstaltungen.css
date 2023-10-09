@@ -1,0 +1,10 @@
+#VeranstaltungsgruppenListe{
+    border-color:#283b70;
+    border-width: 3px;
+    border-style: solid;
+    margin: 5%;
+}
+
+p{
+ text-align: center;
+}
