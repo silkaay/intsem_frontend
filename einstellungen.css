@@ -59,3 +59,9 @@ h2,p,b{
 .custom-half-width {
     width: 50%;
 }
+
+.card{
+    border-color: #283b70;
+    border-width: 3px;
+    
+}
