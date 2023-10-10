@@ -12,6 +12,6 @@
     text-decoration: none;
 }
 #link-style:hover {
-    text-decoration: underline dotted;
+    text-decoration: underline;
     opacity: 90%;
 }
