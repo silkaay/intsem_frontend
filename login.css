@@ -9,8 +9,9 @@
    
 }
 #link-style {
-    text-decoration: underline dotted;
+    text-decoration: none;
 }
 #link-style:hover {
-    opacity: 60%;
+    text-decoration: underline dotted;
+    opacity: 90%;
 }
