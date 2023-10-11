@@ -10,7 +10,13 @@
 .mit-blue {
     color: #283b70 !important;
 }
-
+.mit-btn {
+    background-color: #283b70 !important;
+    border-color: #283b70;
+}
+.mit-btn:hover {
+    opacity: 85%;
+}
 .mit-head {
     height: 1.5em;
 }
