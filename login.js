@@ -3,45 +3,44 @@ document.getElementById("buttonNeuerAccount").addEventListener("click", function
 });
 
 function postLogin() {
-    // Werte aus den Input-Feldern abrufen
-    const email = document.getElementById('email').value;
-    const passwort = document.getElementById('passwort').value;
-  
-    // Die URL, an die der POST-Request gesendet wird
-    const url = 'http://localhost:8080/post/login'; // Beispiel-URL für einen Login-Endpoint
-  
-    // Daten im JSON-Format erstellen
-    const data = {
-      email: email,
-      passwort: passwort
-    };
-  
-    // Konfigurationsobjekt für den POST-Request
-    const requestOptions = {
-      method: 'POST', // HTTP-Methode
-      headers: {
-        'Content-Type': 'application/json' // Art des gesendeten Inhalts (hier JSON)
-      },
-      body: JSON.stringify(data) // Daten im JSON-Format umgewandelt und gesendet
-    };
-  
-    // Senden des POST-Requests mit fetch
-    fetch(url, requestOptions)
-      .then(response => {
-        // Überprüfen, ob die Anfrage erfolgreich war
-        if (response.ok) {
-          return response.json(); // Antwort im JSON-Format extrahieren
-        }
-        throw new Error('Network response was not ok.');
-      })
-      .then(data => {
-        // Verarbeiten Sie die erhaltenen Daten hier
-        console.log(data);
-        console.log("test");
-      })
-      .catch(error => {
-        // Fehlerbehandlung hier
-        console.error('Error:', error);
-      });
-  }
-  
+  // Werte aus den Input-Feldern abrufen
+  const username = document.getElementById('email').value;
+  const password = document.getElementById('passwort').value;
+
+  // Die URL, an die der POST-Request gesendet wird
+  const url = 'http://localhost:8080/login'; // Beispiel-URL für einen Login-Endpoint
+
+  // Daten im application/x-www-form-urlencoded-Format erstellen
+  const data = new URLSearchParams();
+  data.append('username', username);
+  data.append('password', password);
+
+  // Konfigurationsobjekt für den POST-Request
+  const requestOptions = {
+    method: 'POST', // HTTP-Methode
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded' // Content-Type auf application/x-www-form-urlencoded ändern
+    },
+    body: data.toString() // Daten im application/x-www-form-urlencoded-Format umgewandelt und gesendet
+  };
+
+  // Senden des POST-Requests mit fetch
+  fetch(url, requestOptions)
+    .then(response => {
+      // Überprüfen, ob die Anfrage erfolgreich war
+      if (response.ok) {
+        window.location.href = 'veranstaltungen.html';
+        return response.json(); // Antwort im JSON-Format extrahieren
+      }
+      throw new Error('Network response was not ok.');
+    })
+    .then(data => {
+      // Verarbeiten Sie die erhaltenen Daten hier
+      console.log(data);
+      console.log("test");
+    })
+    .catch(error => {
+      // Fehlerbehandlung hier
+      console.error('Error:', error);
+    });
+}
