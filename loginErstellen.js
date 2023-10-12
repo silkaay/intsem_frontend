@@ -15,12 +15,27 @@ function toggleForm(formId) {
     }
 }
 
+var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl);
+    });
+
 function validatePassword() {
     var password = document.getElementById("passwort").value;
     var confirmPassword = document.getElementById("passwort_confirmation").value;
-    if (password != confirmPassword) {
-        alert("Passwords do not match. Please enter the same password in both fields.");
+
+    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+
+    if (!password.match(passwordRegex)) {
+        alert("Das Passwort muss mindestens 8 Zeichen lang sein und mindestens einen Großbuchstaben, eine Zahl, ein Sonderzeichen und Kleinbuchstaben enthalten.");
         return false;
     }
+
+    if (password !== confirmPassword) {
+        alert("Die Passwörter stimmen nicht überein.");
+        return false;
+    }
+    console.log("Succes!");
+
     return true;
 }
