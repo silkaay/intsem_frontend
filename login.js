@@ -2,13 +2,33 @@ document.getElementById("buttonNeuerAccount").addEventListener("click", function
     window.location.href = "loginErstellen.html";
 });
 
+    // Erstelle eine Funktion, um die Kommentare abzurufen
+    function getTest() {
+        test = "Es klapptt!?";
+
+        // Rufe die Daten von der API ab
+        fetch(`http://localhost:8080/test`)
+            .then(response => response.json())
+            .then(test => {
+                console.log(test);
+                
+            })
+            .catch(error => {
+                console.log("Error: Ich will nicht mehr");
+                console.error(error);
+            });
+    }
+  
+
+
+
 function postLogin() {
   // Werte aus den Input-Feldern abrufen
   const username = document.getElementById('email').value;
   const password = document.getElementById('passwort').value;
 
   // Die URL, an die der POST-Request gesendet wird
-  const url = 'http://localhost:8080/login'; // Beispiel-URL für einen Login-Endpoint
+  const url = 'http://localhost:8080/test/'; // Beispiel-URL für einen Login-Endpoint
 
   // Daten im application/x-www-form-urlencoded-Format erstellen
   const data = new URLSearchParams();
