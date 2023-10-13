@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="Bilder/ZwingenbergWappen.png">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="nutzerverwaltung.css">
+    <title>Meine Veranstaltungen</title>
+</head>
+<body>
+  <div class="jumbotron mit-lightblue text-center headpad position-relative">
+    <a class="position-absolute h6 top-0 end-0 m-3 mit-blue" id="a-deco"href="veranstaltungen.html">Logout <img src="Bilder/nutzer.png" alt="Nutzer icon" class="mit-head"></a>
+    <h1 class="display-5 fw-bold mit-blue">Veranstaltungen <img src="Bilder/ZwingenbergWappen.png" alt="Zwingenberg Wappen" class="img-fluid align-middle mr-2 mit-head"> Zwingenberg</h1>
+  </div>
+
+  <nav class="navbar navbar-expand-sm navbar-light py-sm-1">
+    <div class="container-fluid">
+      <!-- Hamburger-Menü -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Navigationslinks -->
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav w-100 justify-content-between">
+          <div class="mx-auto px-3"> <!-- Füge hier den linken und rechten Abstand hinzu -->
+            <a class="nav-link " aria-current="page" href="veranstaltungen.html"><h6>Veranstaltungen</h6></a>
+          </div>
+          <div class="mx-auto px-3"> <!-- Füge hier den linken und rechten Abstand hinzu -->
+            <a class="nav-link mit-active" href="nutzerverwaltung.html"><h6>Nutzerverwaltung</h6></a>
+          </div>
+          <div class="mx-auto px-3"> <!-- Füge hier den linken und rechten Abstand hinzu -->
+            <a class="nav-link" href="einstellungen.html"><h6>Einstellungen</h6></a>
+          </div>
+          <div class="mx-auto px-3"> <!-- Füge hier den linken und rechten Abstand hinzu -->
+            <a class="nav-link" href="impressum.html"><h6>Impressum</h6></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+    
+    <!--Inhalt-->
+    <div class="row">
+        <div class="col-sm-3" id="seitlicheNavbar">
+            <nav class="navbar bg-light">
+                <div class="container-fluid">
+                  <ul class="navbar-nav">
+                        <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="nutzerverwaltungalle.html"><h7>Alle freigegebene Nutzer</h7></a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="nutzerverwaltungfreieOrg.html"><h7>freigegebene Organisationen</h7></a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="nutzerverwaltungnichtfreieOrg.html"><h7>nicht freigegebene Organisationen</h7></a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="nutzerverwaltungadmin.html"><h7>Admins</h7></a>
+                        </li>
+                  </ul>
+                </div>
+              </nav>
+
+        </div>
+        <div class="col-sm-8">
+            <div class="card">
+            
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-2 ">
+                            <table style="height: 100%;">
+                                <tbody>
+                                  <tr>
+                                    <td class="align-middle"><h3>Nutzer</h3></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="d-flex" style="height: 100%;">
+                            <div class="vr"></div>
+                          </div></div>
+                        <div class="col-sm-7">
+                            <p class="card-text">Name Vorname</p>
+                            <p class="card-text">E-mail-Adresse</p>
+                        </div>
+                        <div class="col-sm-1">
+                            <table style="height: 100%;">
+                                <tbody>
+                                  <tr>
+                                    <td class="align-middle"><button type="button" class="btn">Details</button></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            
+                        </div>
+                    
+                    </div>
+                </div>
+                
+            
+        </div>
+        </div>
+
+    </div>
+    
+      
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

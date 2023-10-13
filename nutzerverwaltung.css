@@ -1,0 +1,33 @@
+.card{
+    border-color:#283b70;
+    border-width: 3px;
+    border-style: solid;
+    margin-top: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.btn{
+    border-color:#283b70;
+    background-color: #283b70;
+    color: white;
+
+}
+
+h3{
+    text-align: center;
+}
+
+.row{
+    margin-right: 0%;
+    width: auto;
+}
+#seitlicheNavbar{
+    margin-top: 3%;
+    margin-left: 3%;
+    
+}
+
+
+
+
