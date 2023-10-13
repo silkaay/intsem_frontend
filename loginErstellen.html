@@ -50,13 +50,15 @@
                     <div class="mb-3 d-flex justify-content-around align-items-center">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="privatRadio" value="Privatperson" checked onchange="toggleForm('privatForm')">
-                            <label class="form-check-label" for="privat">Privatperson</label>
+                            <label class="form-check-label" for="privatRadio">Privatperson</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="orgaRadio" value="Organisation" onchange="toggleForm('orgaForm')">
-                            <label class="form-check-label" for="orga">Organisation/Verein</label>
+                            <label class="form-check-label" for="orgaRadio">Organisation/Verein</label>
                         </div>
                     </div>
+
+                    <!-- Hier ist die Form für Privatpersonen -->
                       <form autocomplete="on" id="privatForm">
                         <div class="mb-3 row">
                             <label for="vorname" class="col-sm-3 col-form-label">Vorname:</label>
@@ -118,14 +120,19 @@
                                 <input type="password" class="form-control" id="passwort" name="passwort" required>
                             </div>
                         </div>
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                              Akzeptieren Sie die AGB?
-                            </label>
-                          </div>
+                        <div class="ms-2 mt-1">
+                          <a href="javascript:void(0);" id="passwortRichtlinie" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" style="font-size: 0.91rem;" onmouseover="zeigePopover()">Passwortrichtlinie</a>
+                        </div>
+                        
+                        <div class="form-check mb-3 mt-4">
+                          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+                          <label class="form-check-label" for="flexCheckDefault">
+                              Indem Sie auf „Registrieren“ klicken, stimmen Sie unseren Nutzungsbedingungen zu. In unserer Datenschutzrichtlinie erfahren Sie, wie wir Ihre Daten erfassen, verwenden und teilen. Unsere Cookie-Richtlinie erklärt, wie wir Cookies und ähnliche Technologien verwenden.
+                          </label>
+                        </div>
                       </form>  
 
+                      <!-- Hier ist die Form für die Organisatoranmeldung -->
                       <form autocomplete="on" id="orgaForm" style="display: none;">
                         <div class="mb-3 row">
                           <label for="name" class="col-sm-3 col-form-label">Name der Organisation:</label>
@@ -178,6 +185,10 @@
                                 <input type="password" class="form-control" id="passwort" name="passwort" required>
                             </div>
                         </div>
+                        <div class="ms-0">
+                          <a href="javascript:void(0);" id="passwortRichtlinie" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" onmouseover="zeigePopover()">Passwortrichtlinie</a>
+                        </div>
+                        
                         <hr>
                         <h4>Ansprechperson:</h4>
                         <div class="mb-3 row">
@@ -203,7 +214,7 @@
                           <textarea class="form-control" id="erklaerung" rows="3"></textarea>
                         </div>
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
                             <label class="form-check-label" for="flexCheckDefault">
                               Akzeptieren Sie die AGB?
                             </label>
