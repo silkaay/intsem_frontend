@@ -20,6 +20,22 @@ var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggl
         return new bootstrap.Popover(popoverTriggerEl);
     });
 
+    function zeigePopover() {
+        var passwortRichtliniePopover = new bootstrap.Popover(document.getElementById("passwortRichtlinie"), {
+            content: "Das Passwort muss mindestens 8 Zeichen lang sein und mindestens einen Großbuchstaben, eine Zahl, ein Sonderzeichen und Kleinbuchstaben enthalten."
+        });
+    
+        // Zeige das Popover sofort an
+        passwortRichtliniePopover.show();
+    
+        // Verberge das Popover nach 3 Sekunden
+        setTimeout(function() {
+            passwortRichtliniePopover.hide();
+        }, 3000); // 3000 Millisekunden (3 Sekunden)
+    }
+    
+   
+
 function validatePassword() {
     var password = document.getElementById("passwort").value;
     var confirmPassword = document.getElementById("passwort_confirmation").value;
