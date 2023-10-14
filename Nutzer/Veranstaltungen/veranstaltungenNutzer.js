@@ -58,16 +58,16 @@ function createBootstrapCards(veranstaltungsgruppen) {
             card.innerHTML = `
                 <div class="card mt-3">
                     <div class="row no-gutters">
-                        <div class="col-md-2">
-                            <img src="${veranstaltungsgruppe.Bild}" class="card-img" alt="Bild">
+                        <div class="col-md-2 d-flex align-items-center" >
+                            <img src="${veranstaltungsgruppe.Bild}" class="card-img" alt="Bild" >
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">${veranstaltungsgruppe.Titel} vom ${formatiereDatum(veranstaltungsgruppe.Anfangszeitpunkt)} - ${formatiereDatum(veranstaltungsgruppe.Endzeitpunkt)}</h5>
+                                <h3 class="card-title">${veranstaltungsgruppe.Titel} vom ${formatiereDatum(veranstaltungsgruppe.Anfangszeitpunkt)} - ${formatiereDatum(veranstaltungsgruppe.Endzeitpunkt)}</h3>
                                 <p class="card-text">${veranstaltungsgruppe.Beschreibung}</p>
                             </div>
                         </div>
-                        <div class="col-md-2 d-flex align-items-center justify-content-end">
+                        <div class="col-md-2 d-flex align-items-center">
                             <button type="button" class="btn btn-primary" id="buttonVeranstaltungDetails">Veranstaltungen</button>
                         </div>
                     </div>
