@@ -48,7 +48,7 @@ function formatiereDatum(datumString) {
 }
 
 // Funktion zum Erstellen von Bootstrap Cards aus den lokalen Daten
-function createBootstrapCards(veranstaltungsgruppen) {
+function createVeranstaltungsgruppe(veranstaltungsgruppen) {
     const container = document.getElementById('veranstaltungsgruppen');
 
     veranstaltungsgruppen.forEach(veranstaltungsgruppe => {
@@ -68,16 +68,24 @@ function createBootstrapCards(veranstaltungsgruppen) {
                             </div>
                         </div>
                         <div class="col-md-2 d-flex align-items-center">
-                            <button type="button" class="btn btn-primary" id="buttonVeranstaltungDetails">Veranstaltungen</button>
+                                    <button type="button" class="btn btn-primary" id="buttonVeranstaltungDetails" data-id="${veranstaltungsgruppe.Id}">Veranstaltungen</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            `;
+                    `;
 
-            container.appendChild(card);
+                    container.appendChild(card);
+
+                    // Fügen Sie einen Eventlistener für den Button hinzu
+                    const button = card.querySelector('button');
+                    button.addEventListener('click', () => {
+                        // Hier können Sie die ID der Veranstaltungsgruppe abrufen und die entsprechende Aktion ausführen
+                        const veranstaltungsgruppenId = button.getAttribute('data-id');
+                        // Fügen Sie hier den Code hinzu, um die Veranstaltungen für die ausgewählte Gruppe zu laden
+                        console.log(`Button geklickt für Veranstaltungsgruppe mit ID: ${veranstaltungsgruppenId}`);
+                    });
+                }
+            });
         }
-    });
-}
 
-// Rufen Sie die Funktion auf, um Bootstrap Cards für veröffentlichte Veranstaltungsgruppen zu erstellen
-createBootstrapCards(lokaleVeranstaltungsgruppen);
+    createVeranstaltungsgruppe(lokaleVeranstaltungsgruppen);
