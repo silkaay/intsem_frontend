@@ -1,8 +1,8 @@
 
 
-//document.getElementById("buttonNeuerAccount").addEventListener("click", function() {
-  //window.location.href = "loginErstellen.html";
-//});
+document.getElementById("buttonNeuerAccount").addEventListener("click", function() {
+  window.location.href = "loginErstellen.html";
+});
 
 function postLogin() {
   // Hier fügst du den Rest deines vorhandenen Codes ein, der den POST-Request durchführt
