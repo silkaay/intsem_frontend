@@ -1,91 +1,61 @@
- // Lokale JSON-Daten für Veranstaltungsgruppen
- const lokaleVeranstaltungsgruppen = [
-    {
-        Id: 1,
-        Titel: 'Ferienspiele',
-        isVeroeffentlicht: true,
-        Anfangszeitpunkt: '2023-10-20T10:00:00',
-        Endzeitpunkt: '2023-10-22T12:00:00',
-        Beschreibung: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-        Bild: 'bildTest.jpg'
-    },
-    {
-        Id: 2,
-        Titel: 'Ferienspiele',
-        isVeroeffentlicht: true,
-        Anfangszeitpunkt: '2023-10-20T10:00:00',
-        Endzeitpunkt: '2023-10-22T12:00:00',
-        Beschreibung: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-        Bild: 'bildTest.jpg'
-    },
-    {
-        Id: 3,
-        Titel: 'Ferienspiele',
-        isVeroeffentlicht: true,
-        Anfangszeitpunkt: '2023-10-20T10:00:00',
-        Endzeitpunkt: '2023-10-22T12:00:00',
-        Beschreibung: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-        Bild: 'bildTest.jpg'
-    },
-    {
-        Id: 4,
-        Titel: 'Ferienspiele',
-        isVeroeffentlicht: true,
-        Anfangszeitpunkt: '2023-10-20T10:00:00',
-        Endzeitpunkt: '2023-10-22T12:00:00',
-        Beschreibung: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-        Bild: 'bildTest.jpg'
-    },
- ];
+// Eventlistener hinzufügen, um den Code auszuführen, wenn die Seite vollständig geladen ist.
+document.addEventListener('DOMContentLoaded', function () {
+    // Deine Funktion hier aufrufen.
+    fetchAllVeranstaltungsgruppen();
+});
+function fetchAllVeranstaltungsgruppen() {
 
-// Funktion zum Formatieren des Datums (z.B., 11.07.2023)
-function formatiereDatum(datumString) {
-    const datum = new Date(datumString);
-    const tag = datum.getDate();
-    const monat = datum.getMonth() + 1;
-    const jahr = datum.getFullYear();
-    return `${tag < 10 ? '0' : ''}${tag}.${monat < 10 ? '0' : ''}${monat}.${jahr}`;
+    // Übergebe den Authentifizierungstoken im Authorization-Header (Bearer-Token).
+    fetch("http://localhost:8080/getAllVeranstaltungsgruppen", {
+        method: 'GET',
+        credentials: "include",
+    })
+        .then(response => response.json())
+        .then(data => {
+            renderVeranstaltungsgruppen(data);
+        })
+        .catch(error => {
+            console.error('Fehler beim Abrufen der Veranstaltungsgruppen:', error);
+        });
+}
+// Diese Funktion formatiert das Datum im gewünschten Format (Anpassen nach Bedarf)
+function formatiereDatum(datum) {
+    const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+    return new Date(datum).toLocaleDateString('de-DE', options);
 }
 
-// Funktion zum Erstellen von Bootstrap Cards aus den lokalen Daten
-function createVeranstaltungsgruppe(veranstaltungsgruppen) {
+function renderVeranstaltungsgruppen(veranstaltungsgruppen) {
     const container = document.getElementById('veranstaltungsgruppen');
 
-    veranstaltungsgruppen.forEach(veranstaltungsgruppe => {
-        if (veranstaltungsgruppe.isVeroeffentlicht) {
-            const card = document.createElement('div');
-            card.classList.add('col-md-12');
-            card.innerHTML = `
-                <div class="card mt-3">
-                    <div class="row no-gutters">
-                        <div class="col-md-2 d-flex align-items-center" >
-                            <img src="${veranstaltungsgruppe.Bild}" class="card-img" alt="Bild" >
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h3 class="card-title">${veranstaltungsgruppe.Titel} vom ${formatiereDatum(veranstaltungsgruppe.Anfangszeitpunkt)} - ${formatiereDatum(veranstaltungsgruppe.Endzeitpunkt)}</h3>
-                                <p class="card-text">${veranstaltungsgruppe.Beschreibung}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-flex align-items-center">
-                                    <button type="button" class="btn btn-primary" id="buttonVeranstaltungDetails" data-id="${veranstaltungsgruppe.Id}">Veranstaltungen</button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
+    if (Array.isArray(veranstaltungsgruppen)) {
+        veranstaltungsgruppen.forEach(veranstaltungsgruppe => {
+            if (veranstaltungsgruppe.isVeroeffentlicht) {
+                // Der Rest deines Codes für die Karten-Erstellung bleibt unverändert.
+                const card = document.createElement('div');
+                card.classList.add('col-md-12');
+                card.innerHTML = `
+              <div class="card mt-3">
+                  <div class="row no-gutters">
+                      <div class="col-md-2 d-flex align-items-center">
+                          <img src="${veranstaltungsgruppe.files}" class="card-img" alt="Bild">
+                      </div>
+                      <div class="col-md-8">
+                          <div class="card-body">
+                              <h3 class="card-title">${veranstaltungsgruppe.titel} vom ${formatiereDatum(veranstaltungsgruppe.anfangszeitpunkt)} - ${formatiereDatum(veranstaltungsgruppe.endzeitpunkt)}</h3>
+                              <p class="card-text">${veranstaltungsgruppe.beschreibung}</p>
+                          </div>
+                      </div>
+                      <div class="col-md-2 d-flex align-items-center">
+                          <button type="button" class="btn btn-primary" id="buttonVeranstaltungDetails" data-id="${veranstaltungsgruppe.id}">Veranstaltungen</button>
+                      </div>
+                  </div>
+              </div>
+          `;
 
-                    container.appendChild(card);
-
-                    // Fügen Sie einen Eventlistener für den Button hinzu
-                    const button = card.querySelector('button');
-                    button.addEventListener('click', () => {
-                        // Hier können Sie die ID der Veranstaltungsgruppe abrufen und die entsprechende Aktion ausführen
-                        const veranstaltungsgruppenId = button.getAttribute('data-id');
-                        // Fügen Sie hier den Code hinzu, um die Veranstaltungen für die ausgewählte Gruppe zu laden
-                        console.log(`Button geklickt für Veranstaltungsgruppe mit ID: ${veranstaltungsgruppenId}`);
-                    });
-                }
-            });
-        }
-
-    createVeranstaltungsgruppe(lokaleVeranstaltungsgruppen);
+                container.appendChild(card);
+            }
+        });
+    } else {
+        console.error('Ungültiges Format der Veranstaltungsgruppen-Daten.');
+    }
+}

@@ -1,9 +1,11 @@
 
-document.getElementById("buttonNeuerAccount").addEventListener("click", function() {
-  window.location.href = "loginErstellen.html";
-});
 
-function postLogin(){
+//document.getElementById("buttonNeuerAccount").addEventListener("click", function() {
+  //window.location.href = "loginErstellen.html";
+//});
+
+function postLogin() {
+  // Hier fügst du den Rest deines vorhandenen Codes ein, der den POST-Request durchführt
   // Werte aus den Input-Feldern abrufen
   const user = document.getElementById('email').value;
   const pass = document.getElementById('passwort').value;
@@ -27,22 +29,22 @@ function postLogin(){
     body: data.toString() // Daten im JSON-Format umgewandelt und gesendet
   };
 
-  // Senden des POST-Requests mit fetch
   fetch(url, requestOptions)
     .then(response => {
-      // Überprüfen, ob die Anfrage erfolgreich war
       if (response.ok) {
-        return response.json(); // Antwort im JSON-Format extrahieren
+        return response.json();
       }
       throw new Error('Network response was not ok.');
     })
     .then(data => {
-      // Verarbeiten Sie die erhaltenen Daten hier
       console.log(data);
       console.log("test");
+      // Führe den Redirect nach dem POST-Request durch
+      window.location.href = "../Nutzer/Veranstaltungen/veranstaltugnen.html";
     })
     .catch(error => {
-      // Fehlerbehandlung hier
       console.error('Error:', error);
     });
 }
+
+
