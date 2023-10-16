@@ -1,8 +1,9 @@
+
 document.getElementById("buttonNeuerAccount").addEventListener("click", function() {
-    window.location.href = "loginErstellen.html";
+  window.location.href = "loginErstellen.html";
 });
 
-​function postLogin() {
+function postLogin(){
   // Werte aus den Input-Feldern abrufen
   const user = document.getElementById('email').value;
   const pass = document.getElementById('passwort').value;
