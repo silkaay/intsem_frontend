@@ -47,7 +47,7 @@
         <div class="card">
           <div class="card-header mit-lightblue mit-blue fw-bold">Passwort ändern</div>
           <div class="card-body">
-            <form>
+            <form id="passwordChangeForm">
                 <div class="mb-3 row">
                     <label for="pwalt" class="col-sm-3 col-form-label">Altes Passwort:</label>
                     <div class="col-sm-9">
@@ -75,7 +75,7 @@
                 <button type="button" class="btn btn-secondary" id="buttonzurückPasswortÄndern">Zurück</button>
               </div>
               <div class="col-6 text-end">
-                <button type="submit" class="btn" id="buttonspeichern" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Passwort ändern</button>
+                <button type="button" class="btn" id="buttonspeichernForm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Passwort ändern</button>
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zurück</button>
-        <button type="button" class="btn btn-danger">Passwort ändern</button>
+        <button type="button" id="buttonspeichernModal" class="btn btn-danger">Passwort ändern</button>
       </div>
     </div>
   </div>
