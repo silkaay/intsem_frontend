@@ -39,8 +39,16 @@ function postLogin() {
     .then(data => {
       console.log(data);
       console.log("test");
-      // Führe den Redirect nach dem POST-Request durch
-      window.location.href = "../Nutzer/Veranstaltungen/veranstaltugnen.html";
+       // Überprüfe die Rolle und leite entsprechend um
+      if (data.role.name === "USER") {
+        window.location.href = "../Nutzer/Veranstaltungen/veranstaltugnen.html";
+      } else if (data.role.name === "ADMIN") {
+        window.location.href = "../Admin/Verwaltungen/verwaltungen.html";
+      } else if (data.role.name === "ORGANISATION") {
+        window.location.href = "../Organisation/Veranstaltungen/veranstaltungen.html";
+      } else {
+        console.error('Unbekannte Rolle:', data.role.name);
+      }
     })
     .catch(error => {
       console.error('Error:', error);
