@@ -43,7 +43,7 @@ function postLogin() {
 
        //hier müssen noch die verzeichnisse angepasst werden!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       if (data.role.name === "USER") {
-        window.location.href = "../Nutzer/Veranstaltungen/veranstaltugnen.html";
+        window.location.href = "../Nutzer/Veranstaltungen/veranstaltungen.html";
       } else if (data.role.name === "ADMIN") {
         window.location.href = "../Admin/Veranstaltungen/veranstaltungen.html";
       } else if (data.role.name === "ORGANISATOR") {
