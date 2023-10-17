@@ -6,12 +6,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const newPasswordInput2 = document.getElementById('pwneu2');
     const successMessage = document.getElementById('successMessage');
     const errorMessage = document.getElementById('errorMessage');
+    const passwordMismatch = document.getElementById('passwordMismatch');
     const modal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
 
     submitButton.addEventListener('click', function() {
         const oldPassword = oldPasswordInput.value;
         const newPassword1 = newPasswordInput1.value;
         const newPassword2 = newPasswordInput2.value;
+
+        // Hide error message when attempting to change password
+        passwordMismatch.style.display = 'none';
 
         if (newPassword1 === newPassword2) {
             const requestData = {
@@ -31,26 +35,30 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Password change was successful
                     successMessage.style.display = 'block';
                     errorMessage.style.display = 'none';
-                    
+
                     // Reset input fields
                     oldPasswordInput.value = '';
                     newPasswordInput1.value = '';
                     newPasswordInput2.value = '';
-                    
+
                     // Close the modal
                     modal.hide();
                 } else {
                     // Error during password change
                     errorMessage.style.display = 'block';
                     successMessage.style.display = 'none';
+                    modal.hide();
                 }
             }).catch(error => {
                 // Error during the request
                 errorMessage.style.display = 'block';
                 successMessage.style.display = 'none';
+                modal.hide();
             });
         } else {
-            alert('Die neuen Passwörter stimmen nicht überein.');
+            // Passwords don't match
+            passwordMismatch.style.display = 'block';
+            modal.hide();
         }
     });
 });
