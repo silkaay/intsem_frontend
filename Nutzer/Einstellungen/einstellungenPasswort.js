@@ -43,22 +43,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     // Close the modal
                     modal.hide();
+
+                    // Set a timer to hide the success message after 3 seconds (3000 milliseconds)
+                    setTimeout(function() {
+                        successMessage.style.display = 'none';
+                    }, 3000);
                 } else {
                     // Error during password change
                     errorMessage.style.display = 'block';
                     successMessage.style.display = 'none';
                     modal.hide();
+
+                    // Set a timer to hide the error message after 3 seconds (3000 milliseconds)
+                    setTimeout(function() {
+                        errorMessage.style.display = 'none';
+                    }, 3000);
                 }
             }).catch(error => {
                 // Error during the request
                 errorMessage.style.display = 'block';
                 successMessage.style.display = 'none';
                 modal.hide();
+
+                // Set a timer to hide the error message after 3 seconds (3000 milliseconds)
+                setTimeout(function() {
+                    errorMessage.style.display = 'none';
+                }, 3000);
             });
         } else {
             // Passwords don't match
             passwordMismatch.style.display = 'block';
             modal.hide();
+
+            // Set a timer to hide the password mismatch message after 3 seconds (3000 milliseconds)
+            setTimeout(function() {
+                passwordMismatch.style.display = 'none';
+            }, 3000);
         }
     });
 });
