@@ -96,6 +96,13 @@ function fetchVeranstaltungsgruppenDetails(id) {
             console.error('Fehler beim Abrufen der Veranstaltungsgruppen-Details:', error);
         });
 }
+document.addEventListener('click', function (event) {
+    if (event.target && event.target.id === 'buttoneinzelveranstaltungVeranstaltungDetails') {
+        // ID aus dem Button-Datensatz (data-id) extrahieren
+        const id = event.target.getAttribute('data-id');
+        console.log(id);
+    }
+});
 
 function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
     const container = document.getElementById('veranstaltungsgruppenDetails');
@@ -112,16 +119,12 @@ function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
                 <div class="col-md-2 d-flex align-items-center">
                     <!-- Hier kannst du ein Bild für die Veranstaltungsgruppe einfügen -->
                 </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h3 class="card-title">${veranstaltungsgruppen.titel}</h3>
-                        <p class="card-text">${veranstaltungsgruppen.beschreibung}</p>
-                        <!-- Weitere Informationen zur Veranstaltungsgruppe hier einfügen -->
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h3 class="card-title">${veranstaltungsgruppen.titel} vom ${formatiereDatum(veranstaltungsgruppen.anfangszeitpunkt)} - ${formatiereDatum(veranstaltungsgruppen.endzeitpunkt)}</h3>
+                            <p class="card-text">${veranstaltungsgruppen.beschreibung}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-2 d-flex align-items-center">
-                    <!-- Füge hier den entsprechenden Button für die Veranstaltungsgruppendetails ein -->
-                </div>
             </div>
         </div>
     `;
@@ -134,32 +137,32 @@ function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
                 const card = document.createElement('div');
                 card.classList.add('col-md-12');
                 card.innerHTML = `
-                  <div class="card mt-3">
-                      <div class="row no-gutters">
-                          <div class="col-md-2 d-flex align-items-center">
-                              <img src="${veranstaltung.files}" class="card-img" alt="Bild">
-                          </div>
-                          <div class="col-md-8">
-                              <div class="card-body">
-                                  <h3 class="card-title">${veranstaltung.titel}</h3>
-                                  <p class="card-text">${veranstaltung.beschreibung}</p>
-                                  <p class="card-text">Maximale Teilnehmer: ${veranstaltung.maxTeilnehmer}</p>
-                                  <p class="card-text">Kosten: ${veranstaltung.kosten}</p>
-                                  <p class="card-text">Anmeldefrist: ${veranstaltung.anmeldefrist}</p>
-                                  <p class="card-text">Startdatum: ${veranstaltung.startdatum}</p>
-                                  <p class="card-text">Startzeit: ${veranstaltung.startzeit}</p>
-                                  <p class="card-text">Enddatum: ${veranstaltung.enddatum}</p>
-                                  <p class="card-text">Endzeit: ${veranstaltung.endzeit}</p>
-                                  <p class="card-text">Organisator: ${veranstaltung.organisator}</p>
-                                  <p class="card-text">Ort: ${veranstaltung.anschrift.ort}</p>
-                              </div>
-                          </div>
-                          <div class="col-md-2 d-flex align-items-center">
-                              <!-- Füge hier den entsprechenden Button für die Veranstaltungsdetails ein -->
-                          </div>
-                      </div>
-                  </div>
-              `;
+                <div class="card mt-3">
+    <div class="row no-gutters">
+        <div class="col-md-2 d-flex align-items-center">
+            <div class="d-flex flex-column align-items-center w-100">
+                
+                <p class="card-text text-center">${veranstaltung.startdatum}</p>
+                <p class="card-text text-center">${veranstaltung.startzeit}</p>
+                
+            </div>
+            <div class="vertical-line"></div>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h3 class="card-title">${veranstaltung.titel}</h3>
+                <p class="card-text">${veranstaltung.beschreibung}</p>
+                <p class="card-text">Anmeldefrist: ${veranstaltung.anmeldefrist}</p>
+            </div>
+        </div>
+        <div class="col-md-2 d-flex align-items-center">
+            <button type="button" class="btn btn-primary" id="buttoneinzelveranstaltungVeranstaltungDetails" data-id="${veranstaltung.id}">Details und Anmeldung</button>
+        </div>
+    </div>
+</div>
+
+
+            `;
 
                 container.appendChild(card);
             }
@@ -168,3 +171,4 @@ function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
         console.error('Ungültiges Format der Veranstaltungsgruppen-Daten.');
     }
 }
+
