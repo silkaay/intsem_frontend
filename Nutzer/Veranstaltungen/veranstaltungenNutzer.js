@@ -3,6 +3,24 @@ document.addEventListener('DOMContentLoaded', function () {
     // Deine Funktion hier aufrufen.
     fetchAllVeranstaltungsgruppen();
 });
+//Eventlistener für den "Veranstaltungen"-Button hinzufügen
+document.addEventListener('click', function (event) {
+    if (event.target && event.target.id === 'buttonVeranstaltungDetails') {
+        // ID aus dem Button-Datensatz (data-id) extrahieren
+        const id = event.target.getAttribute('data-id');
+        
+        if (id) {
+            // Verstecke den Container der Veranstaltungsgruppen
+            document.getElementById('veranstaltungsgruppen-container').style.display = 'none';
+            
+            // Zeige den Container für die Veranstaltungen
+            document.getElementById('veranstaltungen-container').style.display = 'block';
+            
+            fetchVeranstaltungsgruppenDetails(id);
+        }
+    }
+});
+
 function fetchAllVeranstaltungsgruppen() {
 
     // Übergebe den Authentifizierungstoken im Authorization-Header (Bearer-Token).
@@ -60,17 +78,6 @@ function renderVeranstaltungsgruppen(veranstaltungsgruppen) {
     }
 }
 
-// Eventlistener für den "Veranstaltungen"-Button hinzufügen
-document.addEventListener('click', function (event) {
-    if (event.target && event.target.id === 'buttonVeranstaltungDetails') {
-        // ID aus dem Button-Datensatz (data-id) extrahieren
-        const id = event.target.getAttribute('data-id');
-        
-        if (id) {
-            fetchVeranstaltungsgruppenDetails(id);
-        }
-    }
-});
 
 function fetchVeranstaltungsgruppenDetails(id) {
     // Hier kannst du die ID verwenden und den entsprechenden Fetch-Aufruf durchführen.
