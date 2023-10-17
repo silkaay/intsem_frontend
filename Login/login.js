@@ -40,11 +40,13 @@ function postLogin() {
       console.log(data);
       console.log("test");
        // Überprüfe die Rolle und leite entsprechend um
+
+       //hier müssen noch die verzeichnisse angepasst werden!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       if (data.role.name === "USER") {
         window.location.href = "../Nutzer/Veranstaltungen/veranstaltugnen.html";
       } else if (data.role.name === "ADMIN") {
-        window.location.href = "../Admin/Verwaltungen/verwaltungen.html";
-      } else if (data.role.name === "ORGANISATION") {
+        window.location.href = "../Admin/Veranstaltungen/veranstaltungen.html";
+      } else if (data.role.name === "ORGANISATOR") {
         window.location.href = "../Organisation/Veranstaltungen/veranstaltungen.html";
       } else {
         console.error('Unbekannte Rolle:', data.role.name);
@@ -54,5 +56,3 @@ function postLogin() {
       console.error('Error:', error);
     });
 }
-
-
