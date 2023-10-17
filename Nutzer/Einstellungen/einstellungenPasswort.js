@@ -1,13 +1,12 @@
-document.getElementById("buttonzurückPasswortÄndern").addEventListener("click", function() {
-    window.location.href = "einstellungen.html";
-});
-
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('passwordChangeForm');
     const submitButton = document.getElementById('buttonspeichernModal');
     const oldPasswordInput = document.getElementById('pwalt');
     const newPasswordInput1 = document.getElementById('pwneu1');
     const newPasswordInput2 = document.getElementById('pwneu2');
+    const successMessage = document.getElementById('successMessage');
+    const errorMessage = document.getElementById('errorMessage');
+    const modal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
 
     submitButton.addEventListener('click', function() {
         const oldPassword = oldPasswordInput.value;
@@ -20,8 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 newPassword: newPassword1
             };
 
-            // Hier fügen Sie den Code ein, um den POST-Request an den Server zu senden
-            // Verwenden Sie z.B. Fetch oder XMLHttpRequest, um die Anfrage zu verarbeiten
             fetch('http://localhost:8080/changePassword', {
                 method: 'POST',
                 body: JSON.stringify(requestData),
@@ -29,17 +26,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     'Content-Type': 'application/json'
                 },
                 credentials: "include"
-
-             }).then(response => {
+            }).then(response => {
                 if (response.status == 200) {
-                    console.log(response);
-                    // Erfolgreiche Änderung des Passworts, hier können Sie eine Erfolgsmeldung anzeigen
+                    // Password change was successful
+                    successMessage.style.display = 'block';
+                    errorMessage.style.display = 'none';
+                    
+                    // Reset input fields
+                    oldPasswordInput.value = '';
+                    newPasswordInput1.value = '';
+                    newPasswordInput2.value = '';
+                    
+                    // Close the modal
+                    modal.hide();
                 } else {
-                    // Fehler bei der Passwortänderung, hier können Sie eine Fehlermeldung anzeigen
+                    // Error during password change
+                    errorMessage.style.display = 'block';
+                    successMessage.style.display = 'none';
                 }
-             }).catch(error => {
-                // Fehler bei der Anfrage
-             });
+            }).catch(error => {
+                // Error during the request
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            });
         } else {
             alert('Die neuen Passwörter stimmen nicht überein.');
         }
