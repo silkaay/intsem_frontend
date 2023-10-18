@@ -215,11 +215,16 @@ function renderVeranstaltungsgruppenDetailsVeranstaltungen(veranstaltung) {
                       <div class="col-md-8">
                           <div class="card-body">
                               <h3 class="card-title">${veranstaltung.titel} am ${veranstaltung.startdatum}</h3>
-                              <p class="card-text">${veranstaltung.beschreibung}</p>
+                              <p class="card-text">${veranstaltung.kosten}</p>
+                              <p class="card-text">${veranstaltung.maxTeilnehmer}</p>
+                              <p class="card-text">${veranstaltung.organisator}</p>
+                              <p class="card-text">${veranstaltung.anschrift.plz} 
+                                                    ${veranstaltung.anschrift.ort} 
+                                                    ${veranstaltung.anschrift.strasse} 
+                                                    ${veranstaltung.anschrift.hausnummer}
+                            </p>
+                            
                           </div>
-                      </div>
-                      <div class="col-md-2 d-flex align-items-center">
-                          <button type="button" class="btn btn-primary" id="buttonVeranstaltungDetails" data-id="${veranstaltung.id}">Veranstaltungen</button>
                       </div>
                   </div>
               </div>
