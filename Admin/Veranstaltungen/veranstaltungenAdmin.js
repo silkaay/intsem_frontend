@@ -273,14 +273,31 @@ function moveElementsWithFalseToContainer(veranstaltungsgruppen) {
         container.appendChild(card);
     });
 }
-
 function redirectToRelease(veranstaltungsgruppenId) {
     // Erstelle die URL mit der übergebenen VeranstaltungsgruppenId
     const releaseUrl = `http://localhost:8080/releaseVeranstaltungsgruppe/${veranstaltungsgruppenId}`;
 
-    // Leite den Benutzer zur URL weiter
-    window.location.href = releaseUrl;
+    // Konfigurieren Sie die fetch-Anforderung für POST
+    fetch(releaseUrl, {
+        method: 'POST',
+        credentials: 'include',
+    })
+        .then(response => {
+            if (response.ok) {
+                // Erfolgreiche Antwort
+                location.reload(); // Seite neu laden
+            } else {
+                // Fehlerhafte Antwort
+                console.error('Fehler bei der Anforderung:', response.status, response.statusText);
+            }
+        })
+        .catch(error => {
+            // Fehler bei der Anforderung
+            console.error('Fehler bei der Anforderung:', error);
+        });
 }
+
+
 
 
 
