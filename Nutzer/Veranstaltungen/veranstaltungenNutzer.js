@@ -152,7 +152,7 @@ function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
             <div class="card-body">
                 <h3 class="card-title">${veranstaltung.titel}</h3>
                 <p class="card-text">${veranstaltung.beschreibung}</p>
-                <p class="card-text">Spätestens Anmelden bis: ${veranstaltung.anmeldefrist}</p>
+                <p class="card-text">Spätestens Anmelden bis: ${formatiereDatum(veranstaltung.anmeldefrist)}</p>
             </div>
         </div>
         <div class="col-md-2 d-flex align-items-center">
