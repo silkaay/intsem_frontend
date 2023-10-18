@@ -214,7 +214,7 @@ function renderVeranstaltungsgruppenDetailsVeranstaltungen(veranstaltung) {
                       </div>
                       <div class="col-md-8">
                           <div class="card-body">
-                              <h3 class="card-title">${veranstaltung.titel} vom ${formatiereDatum(veranstaltung.anfangszeitpunkt)} - ${formatiereDatum(veranstaltung.endzeitpunkt)}</h3>
+                              <h3 class="card-title">${veranstaltung.titel} am ${veranstaltung.startdatum}</h3>
                               <p class="card-text">${veranstaltung.beschreibung}</p>
                           </div>
                       </div>
