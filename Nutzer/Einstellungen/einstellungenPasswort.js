@@ -1,3 +1,7 @@
+document.getElementById("buttonzurückPasswortÄndern").addEventListener("click", function() {
+    window.location.href = "einstellungen.html";
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('passwordChangeForm');
     const submitButton = document.getElementById('buttonspeichernModal');
