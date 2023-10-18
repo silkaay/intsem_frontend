@@ -1,0 +1,32 @@
+#buttonVeranstaltungDetails{
+    background-color: #283b70;
+    border-color: #283b70;
+    color: white;
+
+
+}
+#buttoneinzelveranstaltungVeranstaltungDetails{
+    background-color: #283b70;
+    border-color: #283b70;
+    color: white;
+    font-size: small;
+
+}
+.vertical-line {
+    border-left: 2px solid lightgray; /* Ändere die Farbe und die Breite nach Bedarf */
+    height: 80%; /* Die Linie erstreckt sich über die gesamte Höhe der Spalte */
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.card{
+    border-color:#8fabca;
+    border-width: 3px;
+    border-style: solid;
+    margin-top: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+.btn{
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
