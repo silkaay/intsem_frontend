@@ -19,6 +19,23 @@ document.addEventListener('click', function (event) {
             fetchVeranstaltungsgruppenDetails(id);
         }
     }
+    if (event.target && event.target.id === 'buttoneinzelveranstaltungVeranstaltungDetails') {
+        // ID aus dem Button-Datensatz (data-id) extrahieren
+        const id = event.target.getAttribute('data-id');
+        
+        if (id) {
+            // Verstecke den Container der Veranstaltungsgruppen
+            document.getElementById('veranstaltungsgruppen-container').style.display = 'none';
+            // Verstecke den Container der VeranstaltungsgruppenDetaills
+            document.getElementById('veranstaltungen-container').style.display = 'none';
+            
+            // Zeige den Container für die Veranstaltungen
+            document.getElementById('veranstaltungeneinzel-container').style.display = 'block';
+            
+            fetchVeranstaltungsgruppenDetailsVeranstaltung(id);
+        }
+    }
+
 });
 
 function fetchAllVeranstaltungsgruppen() {
@@ -96,13 +113,6 @@ function fetchVeranstaltungsgruppenDetails(id) {
             console.error('Fehler beim Abrufen der Veranstaltungsgruppen-Details:', error);
         });
 }
-document.addEventListener('click', function (event) {
-    if (event.target && event.target.id === 'buttoneinzelveranstaltungVeranstaltungDetails') {
-        // ID aus dem Button-Datensatz (data-id) extrahieren
-        const id = event.target.getAttribute('data-id');
-        console.log(id);
-    }
-});
 
 function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
     const container = document.getElementById('veranstaltungsgruppenDetails');
@@ -172,3 +182,54 @@ function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
     }
 }
 
+function fetchVeranstaltungsgruppenDetailsVeranstaltung(id){
+    // Hier kannst du die ID verwenden und den entsprechenden Fetch-Aufruf durchführen.
+    fetch(`http://localhost:8080/getVeranstaltungsDetails/${id}`, {
+        method: 'GET',
+        credentials: 'include',
+    })
+        .then(response => response.json())
+        .then(data => {
+            // Verarbeite die erhaltenen Daten
+            // Zum Beispiel: renderVeranstaltungsgruppenDetails(data);
+            console.log(data);
+            renderVeranstaltungsgruppenDetailsVeranstaltungen(data);
+        })
+        .catch(error => {
+            console.error('Fehler beim Abrufen der Veranstaltungsgruppen-Details:', error);
+        });
+}
+
+function renderVeranstaltungsgruppenDetailsVeranstaltungen(veranstaltung) {
+    const container = document.getElementById('veranstaltungsgruppenDetailsVeranstaltung');
+
+            
+                const card = document.createElement('div');
+                card.classList.add('col-md-12');
+                card.innerHTML = `
+              <div class="card mt-3">
+                  <div class="row no-gutters">
+                      <div class="col-md-2 d-flex align-items-center">
+                          <img src="${veranstaltung.files}" class="card-img" alt="Bild">
+                      </div>
+                      <div class="col-md-8">
+                          <div class="card-body">
+                              <h3 class="card-title">${veranstaltung.titel} am ${veranstaltung.startdatum}</h3>
+                              <p class="card-text">${veranstaltung.kosten}</p>
+                              <p class="card-text">${veranstaltung.maxTeilnehmer}</p>
+                              <p class="card-text">${veranstaltung.organisator}</p>
+                              <p class="card-text">${veranstaltung.anschrift.plz} 
+                                                    ${veranstaltung.anschrift.ort} 
+                                                    ${veranstaltung.anschrift.strasse} 
+                                                    ${veranstaltung.anschrift.hausnummer}
+                            </p>
+                            
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+          `;
+          container.appendChild(card);
+        
+}
