@@ -3,35 +3,39 @@ document.addEventListener('DOMContentLoaded', function () {
     // Deine Funktion hier aufrufen.
     fetchAllVeranstaltungsgruppen();
 });
+
 //Eventlistener für den "Veranstaltungen"-Button hinzufügen
 document.addEventListener('click', function (event) {
+    if(event.target.id === `login`){
+        window.location.href = '../Login/login.html';
+    }
     if (event.target && event.target.id === 'buttonVeranstaltungDetails') {
         // ID aus dem Button-Datensatz (data-id) extrahieren
         const id = event.target.getAttribute('data-id');
-        
+
         if (id) {
             // Verstecke den Container der Veranstaltungsgruppen
             document.getElementById('veranstaltungsgruppen-container').style.display = 'none';
-            
+
             // Zeige den Container für die Veranstaltungen
             document.getElementById('veranstaltungen-container').style.display = 'block';
-            
+
             fetchVeranstaltungsgruppenDetails(id);
         }
     }
     if (event.target && event.target.id === 'buttoneinzelveranstaltungVeranstaltungDetails') {
         // ID aus dem Button-Datensatz (data-id) extrahieren
         const id = event.target.getAttribute('data-id');
-        
+
         if (id) {
             // Verstecke den Container der Veranstaltungsgruppen
             document.getElementById('veranstaltungsgruppen-container').style.display = 'none';
             // Verstecke den Container der VeranstaltungsgruppenDetaills
             document.getElementById('veranstaltungen-container').style.display = 'none';
-            
+
             // Zeige den Container für die Veranstaltungen
             document.getElementById('veranstaltungeneinzel-container').style.display = 'block';
-            
+
             fetchVeranstaltungsgruppenDetailsVeranstaltung(id);
         }
     }
@@ -121,9 +125,9 @@ function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
         const veranstaltungen = veranstaltungsgruppen.veranstaltungen;
 
         // Füge die Veranstaltungsgruppen-Information am Anfang ein
-    const gruppenCard = document.createElement('div');
-    gruppenCard.classList.add('col-md-12');
-    gruppenCard.innerHTML = `
+        const gruppenCard = document.createElement('div');
+        gruppenCard.classList.add('col-md-12');
+        gruppenCard.innerHTML = `
         <div class="card mt-3">
             <div class="row no-gutters">
                 <div class="col-md-2 d-flex align-items-center">
@@ -139,8 +143,8 @@ function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
         </div>
     `;
 
-    container.appendChild(gruppenCard);
-    
+        container.appendChild(gruppenCard);
+
         veranstaltungen.forEach(veranstaltung => {
             if (veranstaltung.isVeroeffentlicht) {
                 // Hier den Code anpassen, um die Veranstaltungen anzuzeigen.
@@ -203,10 +207,10 @@ function fetchVeranstaltungsgruppenDetailsVeranstaltung(id){
 function renderVeranstaltungsgruppenDetailsVeranstaltungen(veranstaltung) {
     const container = document.getElementById('veranstaltungsgruppenDetailsVeranstaltung');
 
-            
-                const card = document.createElement('div');
-                card.classList.add('col-md-12');
-                card.innerHTML = `
+
+    const card = document.createElement('div');
+    card.classList.add('col-md-12');
+    card.innerHTML = `
               <div class="card mt-3" id="veranstaltungsdetailsansicht">
                   <div class="row no-gutters">
                       <div class="col-md-2 d-flex align-items-center">
@@ -237,7 +241,7 @@ function renderVeranstaltungsgruppenDetailsVeranstaltungen(veranstaltung) {
                                         <p class="card-text">Spätestens Anmelden bis: ${formatiereDatum(veranstaltung.anmeldefrist)}</p>
                                     </div>
                                     <div class="col-md-2 d-flex align-items-center">
-                                        <button type="button" class="btn"  data-id="${veranstaltung.id}">Anmelden</button>
+                                        <button type="button" class="btn" id="login">Anmelden</button>
                                     </div>
                               </div>
                               
@@ -249,6 +253,6 @@ function renderVeranstaltungsgruppenDetailsVeranstaltungen(veranstaltung) {
               </div>
               
           `;
-          container.appendChild(card);
-        
+    container.appendChild(card);
+
 }
