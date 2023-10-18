@@ -74,13 +74,13 @@ function renderVeranstaltungsgruppen(veranstaltungsgruppen) {
                       <div class="col-md-2 d-flex align-items-center">
                           <img src="${veranstaltungsgruppe.files}" class="card-img" alt="Bild">
                       </div>
-                      <div class="col-md-8">
+                      <div class="col-md-7">
                           <div class="card-body">
                               <h3 class="card-title">${veranstaltungsgruppe.titel} vom ${formatiereDatum(veranstaltungsgruppe.anfangszeitpunkt)} - ${formatiereDatum(veranstaltungsgruppe.endzeitpunkt)}</h3>
                               <p class="card-text">${veranstaltungsgruppe.beschreibung}</p>
                           </div>
                       </div>
-                      <div class="col-md-2 d-flex align-items-center">
+                      <div class="col-md-1 d-flex align-items-center">
                           <button type="button" class="btn btn-primary" id="buttonVeranstaltungDetails" data-id="${veranstaltungsgruppe.id}">Veranstaltungen</button>
                       </div>
                   </div>
@@ -207,22 +207,41 @@ function renderVeranstaltungsgruppenDetailsVeranstaltungen(veranstaltung) {
                 const card = document.createElement('div');
                 card.classList.add('col-md-12');
                 card.innerHTML = `
-              <div class="card mt-3">
+              <div class="card mt-3" id="veranstaltungsdetailsansicht">
                   <div class="row no-gutters">
                       <div class="col-md-2 d-flex align-items-center">
                           <img src="${veranstaltung.files}" class="card-img" alt="Bild">
                       </div>
-                      <div class="col-md-8">
+                      <div class="col-md-10">
                           <div class="card-body">
-                              <h3 class="card-title">${veranstaltung.titel} am ${veranstaltung.startdatum}</h3>
-                              <p class="card-text">${veranstaltung.kosten}</p>
-                              <p class="card-text">${veranstaltung.maxTeilnehmer}</p>
-                              <p class="card-text">${veranstaltung.organisator}</p>
-                              <p class="card-text">${veranstaltung.anschrift.plz} 
-                                                    ${veranstaltung.anschrift.ort} 
+                              <h2 class="card-title" id="veranstaltungsdetailstitel">${veranstaltung.titel} am ${veranstaltung.startdatum}</h2>
+                              <h3 id="veranstaltungsdetailstitel">${veranstaltung.startzeit}-${veranstaltung.endzeit}</h3>
+                              <p class="card-text" id="veranstaltungsdetailstitel">${veranstaltung.organisator}</p>
+                              <p class="card-text"><b>Adresse: 
                                                     ${veranstaltung.anschrift.strasse} 
-                                                    ${veranstaltung.anschrift.hausnummer}
-                            </p>
+                                                    ${veranstaltung.anschrift.hausnummer},
+                                                    ${veranstaltung.anschrift.plz} 
+                                                    ${veranstaltung.anschrift.ort} </b>
+                                                   
+                              </p>
+                              <p class="card-text">${veranstaltung.beschreibung}</p>
+                              <p>Bedingungen:</p>
+                              <p class="card-text">${veranstaltung.weitereBedingungen}</p>
+                              <br>
+                              <p class="card-text">Kosten: ${veranstaltung.kosten}€</p>
+                              <p class="card-text">Maximale Teilnehmer:
+                               <b id="personenzahl">${veranstaltung.maxTeilnehmer}</b>
+                              </p>
+                              <div class="row">
+                                    <div class="col-md-10">
+                                        <p class="card-text">Spätestens Anmelden bis: ${formatiereDatum(veranstaltung.anmeldefrist)}</p>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-items-center">
+                                        <button type="button" class="btn"  data-id="${veranstaltung.id}">Anmelden</button>
+                                    </div>
+                              </div>
+                              
+                             
                             
                           </div>
                       </div>
