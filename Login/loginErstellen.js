@@ -39,21 +39,32 @@ var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggl
 function validatePassword() {
     var password = document.getElementById("passwort").value;
     var confirmPassword = document.getElementById("passwort_confirmation").value;
+    var modalBody = document.getElementById("alert-content");
+    const successModal = new bootstrap.Modal(document.getElementById('badModal'));
 
     var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
 
     if (!password.match(passwordRegex)) {
-        alert("Das Passwort muss mindestens 8 Zeichen lang sein und mindestens einen Großbuchstaben, eine Zahl, ein Sonderzeichen und Kleinbuchstaben enthalten.");
+        
+        var text = "Das Passwort muss mindestens 8 Zeichen lang sein und mindestens einen Großbuchstaben, eine Zahl, ein Sonderzeichen und Kleinbuchstaben enthalten."
+        modalBody.textContent = text;
+            successModal.show();
+
         return false;
     }
 
     if (password !== confirmPassword) {
-        alert("Die Passwörter stimmen nicht überein.");
+        var text = "Die Passwörter stimmen nicht überein."
+        modalBody.textContent = text;
+        
+        successModal.show();
+
         return false;
     }
-    console.log("Succes!");
+    console.log("Success!");
+    
 
-    return true;
+    return chooseRegister();
 }
 
 function chooseRegister() {
@@ -113,7 +124,10 @@ function registerUser() {
             }
             if (response.ok) {
                 console.log("alles gut");
-                $('#myModal').modal('show');
+
+                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+            successModal.show();
+                
             }
         })
         .catch(error => {
@@ -168,12 +182,6 @@ function registerOrga() {
                 console.log("alles gut");
                 const successModal = new bootstrap.Modal(document.getElementById('successModal'));
             successModal.show();
-
-            // Schließen Sie das Modal, wenn die Schließen-Schaltfläche angeklickt wird
-            const closeButton = document.querySelector('.close-button');
-            closeButton.addEventListener('click', function() {
-                successModal.hide();
-            });
             }
         })
         .catch(error => {
