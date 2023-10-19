@@ -29,6 +29,14 @@ function forgotPassword() {
             }
             if (response.ok) {
                 console.log("alles gut");
+                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+            successModal.show();
+
+            // Schließen Sie das Modal, wenn die Schließen-Schaltfläche angeklickt wird
+            const closeButton = document.querySelector('.close-button');
+            closeButton.addEventListener('click', function() {
+                successModal.hide();
+            });
             }
         })
         .catch(error => {
