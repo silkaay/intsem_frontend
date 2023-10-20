@@ -242,7 +242,7 @@ function moveElementsWithFalseToContainer(veranstaltungsgruppen) {
     });
 
     // Den Zielcontainer auswählen
-    const container = document.getElementById("veranstaltsungsgruppennichtoffen");
+    const container = document.getElementById("veranstaltungsgruppen");
 
     // Iterieren Sie durch das Array und erstellen Sie Cards wie in Ihrer Funktion
     elementsWithFalse.forEach(veranstaltungsgruppe => {
@@ -295,6 +295,61 @@ function redirectToRelease(veranstaltungsgruppenId) {
             // Fehler bei der Anforderung
             console.error('Fehler bei der Anforderung:', error);
         });
+}
+
+
+//detailansicht
+function renderVeranstaltungsgruppenDetailsVeranstaltungen(veranstaltung) {
+    const container = document.getElementById('veranstaltungsgruppenDetailsVeranstaltung');
+
+
+    const card = document.createElement('div');
+    card.classList.add('col-md-12');
+    card.innerHTML = `
+              <div class="card mt-3" id="veranstaltungsdetailsansicht">
+                  <div class="row no-gutters">
+                      <div class="col-md-2 d-flex align-items-center">
+                          <img src="${veranstaltung.files}" class="card-img" alt="Bild">
+                      </div>
+                      <div class="col-md-10">
+                          <div class="card-body">
+                              <h2 class="card-title" id="veranstaltungsdetailstitel">${veranstaltung.titel} am ${veranstaltung.startdatum}</h2>
+                              <h3 id="veranstaltungsdetailstitel">${veranstaltung.startzeit}-${veranstaltung.endzeit}</h3>
+                              <p class="card-text" id="veranstaltungsdetailstitel">${veranstaltung.organisator}</p>
+                              <p class="card-text"><b>Adresse: 
+                                                    ${veranstaltung.anschrift.strasse} 
+                                                    ${veranstaltung.anschrift.hausnummer},
+                                                    ${veranstaltung.anschrift.plz} 
+                                                    ${veranstaltung.anschrift.ort} </b>
+                                                   
+                              </p>
+                              <p class="card-text">${veranstaltung.beschreibung}</p>
+                              <p>Bedingungen:</p>
+                              <p class="card-text">${veranstaltung.weitereBedingungen}</p>
+                              <br>
+                              <p class="card-text">Kosten: ${veranstaltung.kosten}€</p>
+                              <p class="card-text">Maximale Teilnehmer:
+                               <b id="personenzahl">${veranstaltung.maxTeilnehmer}</b>
+                              </p>
+                              <div class="row">
+                                    <div class="col-md-10">
+                                        <p class="card-text">Spätestens Anmelden bis: ${formatiereDatum(veranstaltung.anmeldefrist)}</p>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-items-center">
+                                        <!--<button type="button" class="btn" id="anmeldebutton"  data-id="${veranstaltung.id}">Anmelden</button> -->
+                                    </div>
+                              </div>
+                              
+                             
+                            
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+          `;
+    container.appendChild(card);
+
 }
 
 

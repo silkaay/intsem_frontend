@@ -30,3 +30,22 @@
     margin-bottom: 5%;
     margin-top: 5%;
 }
+.card{
+    border-color: #8fabca;
+    border-width: 2px;
+}
+#veranstaltungsdetailstitel{
+    text-align: center;
+}
+#personenzahl{
+    color: #283b70;
+    font-size: x-large;
+}
+#veranstaltungsdetailsansicht{
+    margin: 5%;
+}
+/*#anmeldebutton{
+    background-color: #283b70;
+    border-color: #283b70;
+    color: white;
+}*/
