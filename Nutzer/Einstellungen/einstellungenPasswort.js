@@ -2,6 +2,38 @@ document.getElementById("buttonzurückPasswortÄndern").addEventListener("click"
     window.location.href = "einstellungen.html";
 });
 
+
+function validatePassword() {
+    var password = document.getElementById("passwort").value;
+    var confirmPassword = document.getElementById("passwort_confirmation").value;
+    var modalBody = document.getElementById("alert-content");
+    const successModal = new bootstrap.Modal(document.getElementById('badModal'));
+
+    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+
+    if (!password.match(passwordRegex)) {
+        
+        var text = "Das Passwort muss mindestens 8 Zeichen lang sein und mindestens einen Großbuchstaben, eine Zahl, ein Sonderzeichen und Kleinbuchstaben enthalten."
+        modalBody.textContent = text;
+            successModal.show();
+
+        return false;
+    }
+
+    if (password !== confirmPassword) {
+        var text = "Die Passwörter stimmen nicht überein."
+        modalBody.textContent = text;
+        
+        successModal.show();
+
+        return false;
+    }
+    console.log("Success!");
+    
+
+    return chooseRegister();
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('passwordChangeForm');
     const submitButton = document.getElementById('buttonspeichernModal');
@@ -11,9 +43,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const successMessage = document.getElementById('successMessage');
     const errorMessage = document.getElementById('errorMessage');
     const passwordMismatch = document.getElementById('passwordMismatch');
+    const passwordCount = document.getElementById('passwordCount');
     const modal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
 
     submitButton.addEventListener('click', function() {
+        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+
         const oldPassword = oldPasswordInput.value;
         const newPassword1 = newPasswordInput1.value;
         const newPassword2 = newPasswordInput2.value;
@@ -21,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Hide error message when attempting to change password
         passwordMismatch.style.display = 'none';
 
-        if (newPassword1 === newPassword2) {
+        if (newPassword1 === newPassword2 && newPassword1.match(passwordRegex)) {
             const requestData = {
                 oldPassword: oldPassword,
                 newPassword: newPassword1
@@ -74,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     errorMessage.style.display = 'none';
                 }, 3000);
             });
-        } else {
+        } else if (newPassword1.match(passwordRegex)) {
             // Passwords don't match
             passwordMismatch.style.display = 'block';
             modal.hide();
@@ -83,6 +118,16 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 passwordMismatch.style.display = 'none';
             }, 3000);
+        } else {
+            // Passwords don't match
+            passwordCount.style.display = 'block';
+            modal.hide();
+
+            // Set a timer to hide the password mismatch message after 3 seconds (3000 milliseconds)
+            setTimeout(function() {
+                passwordCount.style.display = 'none';
+            }, 3000);
+
         }
     });
 });
