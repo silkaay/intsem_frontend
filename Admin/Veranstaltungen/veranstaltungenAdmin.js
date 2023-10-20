@@ -35,8 +35,34 @@ document.addEventListener('click', function (event) {
             fetchVeranstaltungsgruppenDetailsVeranstaltung(id);
         }
     }
+    if (event.target.id === 'buttonVeranstaltungsgruppeLöschen'){
+        const id = event.target.getAttribute('data-id');
+
+        if (id){
+            deleteVeranstaltungsgruppe(id);
+
+        }
+
+    }
 
 });
+function deleteVeranstaltungsgruppe(id) {
+    fetch(`http://localhost:8080/deleteVeranstaltungsgruppe/${id}`, {
+        method: 'DELETE', // Change the HTTP method to DELETE
+        credentials: 'include',
+    })
+    .then(response => {
+        if (response.ok) {
+            // Successful response
+            location.reload(); // Reload the page
+        }
+        return response.json();
+    })
+    .catch(error => {
+        console.error('Fehler beim Löschen der Veranstaltungsgruppe:', error);
+    });
+}
+
 
 function fetchAllVeranstaltungsgruppen() {
 
@@ -138,8 +164,8 @@ function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
         </div>
         <div class="col-md-2 d-flex flex-column align-items-center">
             <!-- Hier kannst du ein Bild für die Veranstaltungsgruppe einfügen -->
-            <button class="btn btn-primary btn-sm my-1" id="buttonVeranstaltungsgruppeBearbeiten">Veranstaltungsgruppe bearbeiten</button>
-            <button class="btn btn-danger btn-sm my-1" id="buttonVeranstaltungsgruppeLöschen">Veranstaltungsgruppe löschen</button>
+            <button class="btn btn-primary btn-sm my-1" id="buttonVeranstaltungsgruppeBearbeiten" data-id="${veranstaltungsgruppen.id}">Veranstaltungsgruppe bearbeiten</button>
+            <button class="btn btn-danger btn-sm my-1" id="buttonVeranstaltungsgruppeLöschen" data-id="${veranstaltungsgruppen.id}">Veranstaltungsgruppe löschen</button>
         </div>
     </div>
 </div>
