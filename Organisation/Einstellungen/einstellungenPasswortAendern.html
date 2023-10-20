@@ -47,7 +47,7 @@
         <div class="card">
           <div class="card-header mit-lightblue mit-blue fw-bold">Passwort ändern</div>
           <div class="card-body">
-            <form>
+            <form id="passwordChangeForm">
                 <div class="mb-3 row">
                     <label for="pwalt" class="col-sm-3 col-form-label">Altes Passwort:</label>
                     <div class="col-sm-9">
@@ -68,6 +68,17 @@
                   </div>
                   
             </form>
+            <div id="successMessage" class="alert alert-success" style="display: none">
+              Passwort erfolgreich geändert!
+          </div>
+  
+          <!-- Error message div (add this immediately after the form) -->
+          <div id="errorMessage" class="alert alert-danger" style="display: none">
+              Fehler bei der Passwortänderung.
+          </div>
+          <div id="passwordMismatch" class="alert alert-danger" style="display: none">
+            Die neuen Passwörter stimmen nicht überein.
+        </div>
           </div>
           <div class="card-footer">
             <div class="row justify-content-between">
@@ -75,7 +86,7 @@
                 <button type="button" class="btn btn-secondary" id="buttonzurückPasswortÄndern">Zurück</button>
               </div>
               <div class="col-6 text-end">
-                <button type="submit" class="btn" id="buttonspeichern" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Passwort ändern</button>
+                <button type="button" class="btn" id="buttonspeichernForm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Passwort ändern</button>
               </div>
             </div>
           </div>
@@ -97,7 +108,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zurück</button>
-        <button type="button" class="btn btn-danger">Passwort ändern</button>
+        <button type="button" id="buttonspeichernModal" class="btn btn-danger">Passwort ändern</button>
       </div>
     </div>
   </div>
