@@ -222,7 +222,7 @@ function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
                 <p class="card-text">Spätestens Anmelden bis: ${formatiereDatum(veranstaltung.anmeldefrist)}</p>
             </div>
         </div>
-        <div class="col-md-2 d-flex flex-column align-items-center">
+        <div class="col-md-2 d-flex flex-column align-items-center justify-content-center">
             <button type="button" class="btn btn-primary" id="buttoneinzelveranstaltungVeranstaltungDetails" data-id="${veranstaltung.id}">Details und Anmeldung</button>
             <button type="button" class="btn btn-danger" id="buttoneinzelveranstaltungLöschen" data-id="${veranstaltung.id}">Veranstaltung löschen</button>
         </div>
