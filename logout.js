@@ -34,7 +34,7 @@ function postLogout() {
         console.log(data);
         console.log("test");
          // Überprüfe die Rolle und leite entsprechend um
-         window.location.href = "../Nichteingeloggt/veranstaltungen.html";
+         window.location.href = "../../../Nichteingeloggt/veranstaltungen.html";
          //hier müssen noch die verzeichnisse angepasst werden!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       })
       .catch(error => {
