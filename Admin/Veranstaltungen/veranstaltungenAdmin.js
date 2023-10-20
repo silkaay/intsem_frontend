@@ -44,11 +44,37 @@ document.addEventListener('click', function (event) {
         }
 
     }
+    if (event.target.id === 'buttoneinzelveranstaltungLöschen'){
+        const id = event.target.getAttribute('data-id');
+
+        if (id){
+            deleteeinzelVeranstaltung(id);
+
+        }
+
+    }
 
 });
+function deleteeinzelVeranstaltung(id) {
+    fetch(`http://localhost:8080/deleteVeranstaltung/${id}`, {
+        method: 'DELETE',
+        credentials: 'include',
+    })
+    .then(response => {
+        if (response.ok) {
+            // Successful response
+            location.reload(); // Reload the page
+        }
+        return response.json();
+    })
+    .catch(error => {
+        console.error('Fehler beim Löschen der Veranstaltungsgruppe:', error);
+    });
+}
+
 function deleteVeranstaltungsgruppe(id) {
     fetch(`http://localhost:8080/deleteVeranstaltungsgruppe/${id}`, {
-        method: 'DELETE', // Change the HTTP method to DELETE
+        method: 'DELETE',
         credentials: 'include',
     })
     .then(response => {
@@ -163,7 +189,6 @@ function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
             </div>
         </div>
         <div class="col-md-2 d-flex flex-column align-items-center">
-            <!-- Hier kannst du ein Bild für die Veranstaltungsgruppe einfügen -->
             <button class="btn btn-primary btn-sm my-1" id="buttonVeranstaltungsgruppeBearbeiten" data-id="${veranstaltungsgruppen.id}">Veranstaltungsgruppe bearbeiten</button>
             <button class="btn btn-danger btn-sm my-1" id="buttonVeranstaltungsgruppeLöschen" data-id="${veranstaltungsgruppen.id}">Veranstaltungsgruppe löschen</button>
         </div>
@@ -197,8 +222,9 @@ function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
                 <p class="card-text">Spätestens Anmelden bis: ${formatiereDatum(veranstaltung.anmeldefrist)}</p>
             </div>
         </div>
-        <div class="col-md-2 d-flex align-items-center">
+        <div class="col-md-2 d-flex flex-column align-items-center">
             <button type="button" class="btn btn-primary" id="buttoneinzelveranstaltungVeranstaltungDetails" data-id="${veranstaltung.id}">Details und Anmeldung</button>
+            <button type="button" class="btn btn-danger" id="buttoneinzelveranstaltungLöschen" data-id="${veranstaltung.id}">Veranstaltung löschen</button>
         </div>
     </div>
 </div>
