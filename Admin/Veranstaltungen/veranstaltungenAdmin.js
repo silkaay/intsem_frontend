@@ -126,19 +126,24 @@ function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
         gruppenCard.classList.add('col-md-12');
         gruppenCard.innerHTML = `
         <div class="card mt-3">
-            <div class="row no-gutters">
-                <div class="col-md-2 d-flex align-items-center">
-                    <!-- Hier kannst du ein Bild für die Veranstaltungsgruppe einfügen -->
-                </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h3 class="card-title">${veranstaltungsgruppen.titel} vom ${formatiereDatum(veranstaltungsgruppen.anfangszeitpunkt)} - ${formatiereDatum(veranstaltungsgruppen.endzeitpunkt)}</h3>
-                            <p class="card-text">${veranstaltungsgruppen.beschreibung}</p>
-                        </div>
-                    </div>
+    <div class="row no-gutters">
+        <div class="col-md-2 d-flex flex-column align-items-center">
+            <!-- Hier kannst du ein Bild für die Veranstaltungsgruppe einfügen -->
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h3 class="card-title">${veranstaltungsgruppen.titel} vom ${formatiereDatum(veranstaltungsgruppen.anfangszeitpunkt)} - ${formatiereDatum(veranstaltungsgruppen.endzeitpunkt)}</h3>
+                <p class="card-text">${veranstaltungsgruppen.beschreibung}</p>
             </div>
         </div>
-    `;
+        <div class="col-md-2 d-flex flex-column align-items-center">
+            <!-- Hier kannst du ein Bild für die Veranstaltungsgruppe einfügen -->
+            <button class="btn btn-primary btn-sm my-1" id="buttonVeranstaltungsgruppeBearbeiten">Veranstaltungsgruppe bearbeiten</button>
+            <button class="btn btn-danger btn-sm my-1" id="buttonVeranstaltungsgruppeLöschen">Veranstaltungsgruppe löschen</button>
+        </div>
+    </div>
+</div>
+`;
 
         container.appendChild(gruppenCard);
 

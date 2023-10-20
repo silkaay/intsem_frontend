@@ -12,6 +12,18 @@
     font-size: small;
 
 }
+#buttonVeranstaltungsgruppeBearbeiten{
+    background-color: #283b70;
+    border-color: #283b70;
+    color: white;
+    font-size: small;
+    margin-right: 5%;
+}
+#buttonVeranstaltungsgruppeLöschen{
+    color: white;
+    font-size: small;
+    margin-right: 5%;
+}
 .vertical-line {
     border-left: 2px solid lightgray; /* Ändere die Farbe und die Breite nach Bedarf */
     height: 80%; /* Die Linie erstreckt sich über die gesamte Höhe der Spalte */
