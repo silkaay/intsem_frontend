@@ -8,14 +8,14 @@ document.addEventListener('click', function (event) {
     if (event.target && event.target.id === 'buttonmeineVeranstaltungDetails') {
         // ID aus dem Button-Datensatz (data-id) extrahieren
         const id = event.target.getAttribute('data-id');
-        
+
         if (id) {
             // Verstecke den Container der Veranstaltungsgruppen
             document.getElementById('meineveranstaltung-container').style.display = 'none';
-            
+
             // Zeige den Container für die Veranstaltungen
             document.getElementById('meineveranstaltungeinzel-container').style.display = 'block';
-            
+
             fetchmeineVeranstaltungEinzel(id);
         }
     }
@@ -107,10 +107,10 @@ function fetchmeineVeranstaltungEinzel(id){
 function rendermeineVeranstaltungEinzel(veranstaltung) {
     const container = document.getElementById('meineveranstaltungEinzelDetails');
 
-            
-                const card = document.createElement('div');
-                card.classList.add('col-md-12');
-                card.innerHTML = `
+    // Haupt-Veranstaltungs-Card
+    const mainCard = document.createElement('div');
+    mainCard.classList.add('col-md-12');
+    mainCard.innerHTML = `
               <div class="card mt-3" id="veranstaltungsdetailsansicht">
                   <div class="row no-gutters">
                       <div class="col-md-2 d-flex align-items-center">
@@ -126,7 +126,6 @@ function rendermeineVeranstaltungEinzel(veranstaltung) {
                                                     ${veranstaltung.anschrift.hausnummer},
                                                     ${veranstaltung.anschrift.plz} 
                                                     ${veranstaltung.anschrift.ort} </b>
-                                                   
                               </p>
                               <p class="card-text">${veranstaltung.beschreibung}</p>
                               <p>Bedingungen:</p>
@@ -141,13 +140,41 @@ function rendermeineVeranstaltungEinzel(veranstaltung) {
                                         <p class="card-text">Spätestens Anmelden bis: ${formatiereDatum(veranstaltung.anmeldefrist)}</p>
                                     </div>
                               </div>
-
                           </div>
                       </div>
                   </div>
               </div>
-              
           `;
-          container.appendChild(card);
-        
+
+    // Hinzufügen der Haupt-Veranstaltungs-Card zur Container-Div
+    container.appendChild(mainCard);
+
+// Anmeldungen anzeigen
+    const anmeldungen = veranstaltung.anmeldungen;
+
+    const anmeldungenContainer = document.createElement('div');
+    anmeldungenContainer.classList.add('row');
+
+    anmeldungen.forEach((anmeldung, index) => {
+        const anmeldungCard = document.createElement('div');
+        anmeldungCard.classList.add('col-md-6'); // Jede Card nimmt die Hälfte der Breite
+        anmeldungCard.innerHTML = `
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h4>Anmeldung ${index + 1}</h4>
+                    <p>Vorname: ${anmeldung.vorname}</p>
+                    <p>Nachname: ${anmeldung.nachname}</p>
+                    <p>Geburtsdatum: ${anmeldung.geburtsdatum}</p>
+                    <p>E-Mail: ${anmeldung.email}</p>
+                    <!-- Weitere Informationen hier aus dem Anmeldungsobjekt einfügen -->
+                </div>
+            </div>
+        `;
+
+        // Hinzufügen der Anmeldungs-Card zur Container-Div für Anmeldungen
+        anmeldungenContainer.appendChild(anmeldungCard);
+    });
+
+    // Hinzufügen der Container-Div für Anmeldungen zur Haupt-Container-Div
+    container.appendChild(anmeldungenContainer);
 }
