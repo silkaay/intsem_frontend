@@ -16,55 +16,51 @@ function toggleForm(formId) {
 }
 
 var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-        return new bootstrap.Popover(popoverTriggerEl);
+var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    return new bootstrap.Popover(popoverTriggerEl);
+});
+
+function zeigePopover() {
+    var passwortRichtliniePopover = new bootstrap.Popover(document.getElementById("passwortRichtlinie"), {
+        content: "Das Passwort muss mindestens 8 Zeichen lang sein und mindestens einen Großbuchstaben, eine Zahl, ein Sonderzeichen und Kleinbuchstaben enthalten."
     });
 
-    function zeigePopover() {
-        var passwortRichtliniePopover = new bootstrap.Popover(document.getElementById("passwortRichtlinie"), {
-            content: "Das Passwort muss mindestens 8 Zeichen lang sein und mindestens einen Großbuchstaben, eine Zahl, ein Sonderzeichen und Kleinbuchstaben enthalten."
-        });
-    
-        // Zeige das Popover sofort an
-        passwortRichtliniePopover.show();
-    
-        // Verberge das Popover nach 3 Sekunden
-        setTimeout(function() {
-            passwortRichtliniePopover.hide();
-        }, 3000); // 3000 Millisekunden (3 Sekunden)
-    }
-    
-   
+    // Zeige das Popover sofort an
+    passwortRichtliniePopover.show();
 
-function validatePassword() {
-    var password = document.getElementById("passwort").value;
-    var confirmPassword = document.getElementById("passwort_confirmation").value;
+    // Verberge das Popover nach 3 Sekunden
+    setTimeout(function() {
+        passwortRichtliniePopover.hide();
+    }, 3000); // 3000 Millisekunden (3 Sekunden)
+}
+
+
+
+function validatePassword(pw1, pw2) {
     var modalBody = document.getElementById("alert-content");
     const successModal = new bootstrap.Modal(document.getElementById('badModal'));
 
     var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    console.log("test 3:"+pw1 + pw2);
+    if (!pw1.match(passwordRegex)) {
 
-    if (!password.match(passwordRegex)) {
-        
         var text = "Das Passwort muss mindestens 8 Zeichen lang sein und mindestens einen Großbuchstaben, eine Zahl, ein Sonderzeichen und Kleinbuchstaben enthalten."
         modalBody.textContent = text;
-            successModal.show();
+        successModal.show();
 
         return false;
     }
 
-    if (password !== confirmPassword) {
+    if (pw1 !== pw2) {
         var text = "Die Passwörter stimmen nicht überein."
         modalBody.textContent = text;
-        
+
         successModal.show();
 
         return false;
     }
     console.log("Success!");
-    
-
-    return chooseRegister();
+    return true;
 }
 
 function chooseRegister() {
@@ -74,10 +70,23 @@ function chooseRegister() {
     // Check if a radio button is selected
     if (selectedValue == "Privatperson") {
         console.log(selectedValue + "001");
-        registerUser();
+        const password = document.getElementById("passwort").value;
+        const confirmPassword = document.getElementById("passwort_confirmation").value;
+        if (validatePassword(password, confirmPassword)) {
+            registerUser();
+        }
+
     } else {
         console.log(selectedValue + "002");
-        registerOrga();
+
+        const password = document.getElementById("pass").value;
+        const confirmPassword = document.getElementById("pass_confirmation").value;
+        console.log("test 1:"+password + confirmPassword);
+        if (validatePassword(password, confirmPassword)) {
+            console.log("test 2:"+password + confirmPassword);
+            registerOrga();
+        }
+
     }
 }
 
@@ -126,8 +135,8 @@ function registerUser() {
                 console.log("alles gut");
 
                 const successModal = new bootstrap.Modal(document.getElementById('successModal'));
-            successModal.show();
-                
+                successModal.show();
+
             }
         })
         .catch(error => {
@@ -144,10 +153,11 @@ function registerOrga() {
     // Die Daten aus dem Formular sammeln
     const formData = new FormData(registrierungsFormular);
 
+    console.log(formData.get('pass'));
     // JSON-Objekt erstellen und Daten hinzufügen
     const jsonData = {
         email: formData.get('email'),
-        passwort: formData.get('passwort'),
+        passwort: formData.get('pass'),
         telefonnummer: formData.get('tel'),
         name: formData.get('name'), // 'tel' ist das Feld für die Telefonnummer im Formular
         ansprechpartnerVorname: formData.get('vorname'),
@@ -181,7 +191,7 @@ function registerOrga() {
             if (response.ok) {
                 console.log("alles gut");
                 const successModal = new bootstrap.Modal(document.getElementById('successModal'));
-            successModal.show();
+                successModal.show();
             }
         })
         .catch(error => {
