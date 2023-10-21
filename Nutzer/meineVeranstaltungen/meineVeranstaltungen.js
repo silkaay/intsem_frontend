@@ -50,11 +50,11 @@ function rendermeineVeranstaltungen(veranstaltung) {
                         <div class="card-body">
                             <h3 class="card-title">${veranstaltung.titel}</h3>
                             <p class="card-text">${veranstaltung.beschreibung}</p>
-                            <p class="card-text">Spätestens Anmelden bis: ${formatiereDatum(veranstaltung.anmeldefrist)}</p>
+                            <p class="card-text">Stornieren bis ${formatiereDatum(veranstaltung.anmeldefrist)} möglich</p>
                         </div>
                     </div>
                     <div class="col-md-2 d-flex align-items-center">
-                        <button type="button" class="btn btn-primary" id="buttoneinzelveranstaltungVeranstaltungDetails" data-id="${veranstaltung.id}">Details und Anmeldung</button>
+                        <button type="button" class="btn btn-primary" id="buttonmeineVeranstaltungDetails" data-id="${veranstaltung.id}">Details und Anmeldung</button>
                     </div>
                 </div>
             </div>
