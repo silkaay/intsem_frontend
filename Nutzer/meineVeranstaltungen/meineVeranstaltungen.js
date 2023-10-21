@@ -19,6 +19,14 @@ document.addEventListener('click', function (event) {
             fetchmeineVeranstaltungEinzel(id);
         }
     }
+    if(event.target.id === 'einzelStornieren') {
+        const id = event.target.getAttribute('data-id');
+
+        if(id){
+            stonierThisUser(id);
+        }
+
+    }
 });
 
 
@@ -155,21 +163,32 @@ function rendermeineVeranstaltungEinzel(veranstaltung) {
     const anmeldungenContainer = document.createElement('div');
     anmeldungenContainer.classList.add('row');
 
-    anmeldungen.forEach((anmeldung, index) => {
+    anmeldungen.forEach((anmeldung) => {
         const anmeldungCard = document.createElement('div');
         anmeldungCard.classList.add('col-md-6'); // Jede Card nimmt die Hälfte der Breite
         anmeldungCard.innerHTML = `
             <div class="card mt-3">
-                <div class="card-body">
-                    <h4>Anmeldung ${index + 1}</h4>
-                    <p>Vorname: ${anmeldung.vorname}</p>
-                    <p>Nachname: ${anmeldung.nachname}</p>
-                    <p>Geburtsdatum: ${anmeldung.geburtsdatum}</p>
-                    <p>E-Mail: ${anmeldung.email}</p>
-                    <!-- Weitere Informationen hier aus dem Anmeldungsobjekt einfügen -->
-                </div>
+    <div class="row">
+        <div class="col-md-2 d-flex align-items-center">
+            <div class="d-flex flex-column align-items-center w-100">
+                <p class="card-text">${anmeldung.vorname}</p>
+                <p class="card-text">${anmeldung.nachname}</p>
             </div>
+            <div class="vertical-line"></div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-body">
+                <p class="card-text">${formatiereDatum(anmeldung.geburtsdatum)}</p>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex align-items-center">
+            <button type="button" class="btn btn-primary" id="einzelStornieren" data-id="${anmeldung.id}">Stornieren</button>
+        </div>
+    </div>
+</div>
+
         `;
+
 
         // Hinzufügen der Anmeldungs-Card zur Container-Div für Anmeldungen
         anmeldungenContainer.appendChild(anmeldungCard);
@@ -178,3 +197,25 @@ function rendermeineVeranstaltungEinzel(veranstaltung) {
     // Hinzufügen der Container-Div für Anmeldungen zur Haupt-Container-Div
     container.appendChild(anmeldungenContainer);
 }
+
+
+function stonierThisUser(id) {
+    fetch(`http://localhost:8080/deleteAnmeldung/${id}`, {
+        method: 'DELETE',
+        credentials: 'include',
+    })
+    .then(response => {
+        if (response.ok) {
+            // Successful response
+            location.reload(); // Reload the page
+            //fetchmeineVeranstaltungEinzel(id);
+        }
+        return response.json();
+    })
+    .catch(error => {
+        console.error('Fehler beim Löschen der Veranstaltungsgruppe:', error);
+    });
+}
+
+
+
