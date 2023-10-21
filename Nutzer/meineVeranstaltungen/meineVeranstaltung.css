@@ -1,0 +1,15 @@
+.vertical-line {
+    border-left: 2px solid lightgray; /* Ändere die Farbe und die Breite nach Bedarf */
+    height: 80%; /* Die Linie erstreckt sich über die gesamte Höhe der Spalte */
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.card{
+    border-color: #8fabca;
+    border-width: 2px;
+}
+.btn{
+    background-color: #283b70;
+    border-color: #283b70;
+    color: white;
+}
