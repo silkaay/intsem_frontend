@@ -72,7 +72,7 @@ function rendermeineVeranstaltungen(veranstaltung) {
                         </div>
                     </div>
                     <div class="col-md-2 d-flex align-items-center">
-                        <button type="button" class="btn btn-primary" id="buttonmeineVeranstaltungDetails" data-id="${veranstaltung.id}">Details und Anmeldung</button>
+                        <button type="button" class="btn btn-primary" id="buttonmeineVeranstaltungDetails" data-id="${veranstaltung.id}">Details und Stornierung</button>
                     </div>
                 </div>
             </div>
@@ -140,13 +140,8 @@ function rendermeineVeranstaltungEinzel(veranstaltung) {
                                     <div class="col-md-10">
                                         <p class="card-text">Spätestens Anmelden bis: ${formatiereDatum(veranstaltung.anmeldefrist)}</p>
                                     </div>
-                                    <div class="col-md-2 d-flex align-items-center">
-                                        <button type="button" class="btn"  data-id="${veranstaltung.id}">Anmelden</button>
-                                    </div>
                               </div>
-                              
-                             
-                            
+
                           </div>
                       </div>
                   </div>
