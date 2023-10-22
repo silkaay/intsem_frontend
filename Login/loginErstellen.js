@@ -153,6 +153,11 @@ function registerOrga() {
     // Die Daten aus dem Formular sammeln
     const formData = new FormData(registrierungsFormular);
 
+    const nutzungsbegruendungTextarea = document.querySelector('#erklaerung'); // Hier #erklaerung, um das Textarea-Element auszuwählen
+
+// Um den Wert aus dem Textarea abzurufen
+    const nutzungsbegruendung = nutzungsbegruendungTextarea.value;
+
     console.log(formData.get('pass'));
     // JSON-Objekt erstellen und Daten hinzufügen
     const jsonData = {
@@ -162,6 +167,7 @@ function registerOrga() {
         name: formData.get('name'), // 'tel' ist das Feld für die Telefonnummer im Formular
         ansprechpartnerVorname: formData.get('vorname'),
         ansprechpartnerNachname: formData.get('nachname'),
+        nutzungsbegruendung: nutzungsbegruendung,
         plz: formData.get('postleitzahl'), // 'postleitzahl' ist das Feld für die Postleitzahl im Formular
         ort: formData.get('ort'),
         strasse: formData.get('straße'), // 'straße' ist das Feld für die Straße im Formular
@@ -199,3 +205,13 @@ function registerOrga() {
             console.error('Error:', error);
         });
 }
+
+function regOkay () {
+    window.location.href = "login.html";
+}
+
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('button-reg')) {
+        regOkay();
+    }
+});
