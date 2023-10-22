@@ -166,42 +166,47 @@ function rendermeineVeranstaltungEinzel(veranstaltung) {
     // Hinzufügen der Haupt-Veranstaltungs-Card zur Container-Div
     container.appendChild(mainCard);
 
-// Anmeldungen anzeigen
     const anmeldungen = veranstaltung.anmeldungen;
 
-    const anmeldungenContainer = document.createElement('div');
-    anmeldungenContainer.classList.add('row');
+const anmeldungenContainer = document.createElement('div');
+anmeldungenContainer.classList.add('row');
 
-    anmeldungen.forEach((anmeldung) => {
-        const anmeldungCard = document.createElement('div');
-        anmeldungCard.classList.add('col-md-6'); // Jede Card nimmt die Hälfte der Breite
-        anmeldungCard.innerHTML = `
-            <div class="card mt-3">
-    <div class="row">
-        <div class="col-md-2 d-flex align-items-center">
-            <div class="d-flex flex-column align-items-center w-100">
-                <p class="card-text">${anmeldung.vorname}</p>
-                <p class="card-text">${anmeldung.nachname}</p>
+anmeldungen.forEach((anmeldung) => {
+    const anmeldungCard = document.createElement('div');
+    anmeldungCard.classList.add('col-md-6'); // Jede Card nimmt die Hälfte der Breite
+
+    const vorname = anmeldung.vornameAnzumeldendePerson !== null ? anmeldung.vornameAnzumeldendePerson : (anmeldung.vorname !== null ? anmeldung.vorname : 'anzumeldendePerson');
+const nachname = anmeldung.nachnameAnzumeldendePerson !== null ? anmeldung.nachnameAnzumeldendePerson : (anmeldung.nachname !== null ? anmeldung.nachname : 'anzumeldendePerson');
+const geburtsdatum = anmeldung.geburtsdatumAnzumeldendePerson !== null ? formatiereDatum(anmeldung.geburtsdatumAnzumeldendePerson) : (anmeldung.geburtsdatum !== null ? formatiereDatum(anmeldung.geburtsdatum) : 'anzumeldendePerson');
+
+
+    anmeldungCard.innerHTML = `
+        <div class="card mt-3">
+            <div class="row">
+                <div class="col-md-2 d-flex align-items-center">
+                    <div class="d-flex flex-column align-items-center w-100">
+                        <p class="card-text">${vorname}</p>
+                        <p class="card-text">${nachname}</p>
+                    </div>
+                    <div class="vertical-line"></div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-body">
+                        <p class="card-text">${geburtsdatum}</p>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex align-items-center">
+                    <button type="button" class="btn btn-primary" id="einzelStornieren" data-id="${anmeldung.id}">Stornieren</button>
+                </div>
             </div>
-            <div class="vertical-line"></div>
         </div>
-        <div class="col-md-4">
-            <div class="card-body">
-                <p class="card-text">${formatiereDatum(anmeldung.geburtsdatum)}</p>
-            </div>
-        </div>
-        <div class="col-md-4 d-flex align-items-center">
-            <button type="button" class="btn btn-primary" id="einzelStornieren" data-id="${anmeldung.id}">Stornieren</button>
-        </div>
-    </div>
-</div>
+    `;
 
-        `;
+    // Hinzufügen der Anmeldungs-Card zur Container-Div für Anmeldungen
+    anmeldungenContainer.appendChild(anmeldungCard);
+});
 
 
-        // Hinzufügen der Anmeldungs-Card zur Container-Div für Anmeldungen
-        anmeldungenContainer.appendChild(anmeldungCard);
-    });
 
     // Hinzufügen der Container-Div für Anmeldungen zur Haupt-Container-Div
     container.appendChild(anmeldungenContainer);
