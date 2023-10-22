@@ -71,7 +71,7 @@ function showUserDetails(user) {
                 <p>Telefonnummer: ${user.telefonnummer}</p>
                 <p>Verifiziert: ${user.verified ? 'Ja' : 'Nein'}</p>
                 <p>Anschrift: ${user.anschrift.strasse} ${user.anschrift.hausnummer}, ${user.anschrift.plz} ${user.anschrift.ort}</p>
-                
+                <button class="btn" onclick="redirectToAdmin(${user.id})">Adminrechte entziehen</button>
                 <!-- Weitere Informationen hier hinzufügen -->
             </div>
         </div>
@@ -81,4 +81,29 @@ function showUserDetails(user) {
     const container = document.getElementById('admin');
     container.innerHTML = ''; // Entferne vorherige Inhalte
     container.appendChild(userDetailsCard);
+}
+
+
+function redirectToAdmin(userId) {
+    // Erstelle die URL mit der übergebenen VeranstaltungsgruppenId
+    const releaseUrl = `http://localhost:8080/changeRole/${userId}`;
+
+    // Konfigurieren Sie die fetch-Anforderung für POST
+    fetch(releaseUrl, {
+        method: 'POST',
+        credentials: 'include',
+    })
+        .then(response => {
+            if (response.ok) {
+                // Erfolgreiche Antwort
+                location.reload(); // Seite neu laden
+            } else {
+                // Fehlerhafte Antwort
+                console.error('Fehler bei der Anforderung:', response.status, response.statusText);
+            }
+        })
+        .catch(error => {
+            // Fehler bei der Anforderung
+            console.error('Fehler bei der Anforderung:', error);
+        });
 }
