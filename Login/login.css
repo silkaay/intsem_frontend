@@ -5,6 +5,12 @@
     transform: translateX(-50%);
 
 }
+.btn-log {
+    background-color: #283b70 !important;
+    border-color: #283b70 !important;
+    color: white;
+}
+
 #link-style {
     text-decoration: none;
 }
