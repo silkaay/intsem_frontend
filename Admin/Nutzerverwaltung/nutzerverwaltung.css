@@ -2,9 +2,13 @@
     border-color:#8fabca;
     border-width: 3px;
     border-style: solid;
-    margin-top: 3%;
+    margin-top: 2%;
     margin-left: 3%;
     margin-right: 3%;
+    margin-bottom: 1%;
+}
+.card-body{
+    margin-left: 3%;
 }
 
 .btn{
@@ -13,19 +17,29 @@
     color: white;
 
 }
+.btn-danger{
+    background-color: #d9534f;
+    border-color: #d9534f;
+}
 
 h3{
     text-align: center;
 }
 
-.row{
-    margin-right: 0%;
-    width: auto;
-}
+
 #seitlicheNavbar{
     margin-top: 3%;
     margin-left: 3%;
     
+}
+.vertical-line {
+    border-left: 2px solid lightgray; /* Ändere die Farbe und die Breite nach Bedarf */
+    height: 80%; /* Die Linie erstreckt sich über die gesamte Höhe der Spalte */
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+h2{
+    text-align: center;
 }
 
 
