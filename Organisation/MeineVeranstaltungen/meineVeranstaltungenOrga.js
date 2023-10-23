@@ -19,6 +19,22 @@ document.addEventListener('click', function (event) {
             fetchmeineVeranstaltungEinzel(id);
         }
     }
+    if (event.target && event.target.id === 'personDetails') {
+        // ID aus dem Button-Datensatz (data-id) extrahieren
+        const id = event.target.getAttribute('data-id');
+
+        if (id) {
+            // Verstecke den Container der Veranstaltungsgruppen
+            document.getElementById('meineveranstaltung-container').style.display = 'none';
+
+            // Zeige den Container für die Veranstaltungen
+            document.getElementById('meineveranstaltungeinzel-container').style.display = 'none';
+
+            document.getElementById('personDetails-container').style.display = 'block';
+
+            displayUserDetails(id);
+        }
+    }
     if(event.target.id === 'einzelStornieren') {
         const id = event.target.getAttribute('data-id');
 
@@ -103,23 +119,27 @@ function rendermeineVeranstaltungen(veranstaltung) {
     }
 }
 
-function fetchmeineVeranstaltungEinzel(id){
-    // Hier kannst du die ID verwenden und den entsprechenden Fetch-Aufruf durchführen.
+let veranstaltungData = null; // Initialisiere die Variable außerhalb der Funktion
+
+function fetchmeineVeranstaltungEinzel(id) {
     fetch(`http://localhost:8080/getVeranstaltungsDetails/${id}`, {
         method: 'GET',
         credentials: 'include',
     })
         .then(response => response.json())
         .then(data => {
+            // Speichere das JSON-Objekt in der außerhalb deklarierten Variable
+            veranstaltungData = data;
+            //console.log(data);
+            console.log('Daten erfolgreich abgerufen:', veranstaltungData);
             // Verarbeite die erhaltenen Daten
-            // Zum Beispiel: renderVeranstaltungsgruppenDetails(data);
-            console.log(data);
             rendermeineVeranstaltungEinzel(data);
         })
         .catch(error => {
             console.error('Fehler beim Abrufen der Veranstaltungsgruppen-Details:', error);
         });
 }
+
 
 function rendermeineVeranstaltungEinzel(veranstaltung) {
     const container = document.getElementById('meineveranstaltungEinzelDetails');
@@ -168,43 +188,44 @@ function rendermeineVeranstaltungEinzel(veranstaltung) {
 
     const anmeldungen = veranstaltung.anmeldungen;
 
-const anmeldungenContainer = document.createElement('div');
-anmeldungenContainer.classList.add('row');
+    const anmeldungenContainer = document.createElement('div');
+    anmeldungenContainer.classList.add('row');
 
-anmeldungen.forEach((anmeldung) => {
-    const anmeldungCard = document.createElement('div');
-    anmeldungCard.classList.add('col-md-6'); // Jede Card nimmt die Hälfte der Breite
+    anmeldungen.forEach((anmeldung) => {
+        const anmeldungCard = document.createElement('div');
+        anmeldungCard.classList.add('col-md-6'); // Jede Card nimmt die Hälfte der Breite
 
-    const vorname = anmeldung.vornameAnzumeldendePerson !== null ? anmeldung.vornameAnzumeldendePerson : (anmeldung.vorname !== null ? anmeldung.vorname : 'anzumeldendePerson');
-const nachname = anmeldung.nachnameAnzumeldendePerson !== null ? anmeldung.nachnameAnzumeldendePerson : (anmeldung.nachname !== null ? anmeldung.nachname : 'anzumeldendePerson');
-const geburtsdatum = anmeldung.geburtsdatumAnzumeldendePerson !== null ? formatiereDatum(anmeldung.geburtsdatumAnzumeldendePerson) : (anmeldung.geburtsdatum !== null ? formatiereDatum(anmeldung.geburtsdatum) : 'anzumeldendePerson');
+        const vorname = anmeldung.vornameAnzumeldendePerson !== null ? anmeldung.vornameAnzumeldendePerson : (anmeldung.vorname !== null ? anmeldung.vorname : 'anzumeldendePerson');
+        const nachname = anmeldung.nachnameAnzumeldendePerson !== null ? anmeldung.nachnameAnzumeldendePerson : (anmeldung.nachname !== null ? anmeldung.nachname : 'anzumeldendePerson');
+        const geburtsdatum = anmeldung.geburtsdatumAnzumeldendePerson !== null ? formatiereDatum(anmeldung.geburtsdatumAnzumeldendePerson) : (anmeldung.geburtsdatum !== null ? formatiereDatum(anmeldung.geburtsdatum) : 'anzumeldendePerson');
 
 
-    anmeldungCard.innerHTML = `
-        <div class="card mt-3">
-            <div class="row">
-                <div class="col-md-2 d-flex align-items-center">
-                    <div class="d-flex flex-column align-items-center w-100">
-                        <p class="card-text">${vorname}</p>
-                        <p class="card-text">${nachname}</p>
-                    </div>
-                    <div class="vertical-line"></div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-body">
-                        <p class="card-text">${geburtsdatum}</p>
-                    </div>
-                </div>
-                <div class="col-md-4 d-flex align-items-center">
-                    <button type="button" class="btn btn-primary" id="einzelStornieren" data-id="${anmeldung.id}">Stornieren</button>
-                </div>
+        anmeldungCard.innerHTML = `
+<div class="card mt-3">
+    <div class="row">
+        <div class="col-md-2 d-flex align-items-center">
+            <div class="d-flex flex-column align-items-center w-100">
+                <p class="card-text">${vorname}</p>
+                <p class="card-text">${nachname}</p>
+            </div>
+            <div class="vertical-line"></div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-body">
+                <p class="card-text">${geburtsdatum}</p>
             </div>
         </div>
-    `;
+        <div class="col-md-4 d-flex align-items-center">
+            <button type="button" class="btn btn-danger mx-2" id="einzelStornieren" data-id="${anmeldung.id}">Entfernen</button>
+            <button type="button" class="btn btn-primary mx-2" id="personDetails" data-id="${anmeldung.id}">Details</button>
+        </div>
+    </div>
+</div>
+`;
 
-    // Hinzufügen der Anmeldungs-Card zur Container-Div für Anmeldungen
-    anmeldungenContainer.appendChild(anmeldungCard);
-});
+        // Hinzufügen der Anmeldungs-Card zur Container-Div für Anmeldungen
+        anmeldungenContainer.appendChild(anmeldungCard);
+    });
 
 
 
@@ -213,8 +234,8 @@ const geburtsdatum = anmeldung.geburtsdatumAnzumeldendePerson !== null ? formati
 
     // Button "Alle Personen stornieren" am Ende hinzufügen
     const stornierenButton = document.createElement('button');
-    stornierenButton.innerText = 'Alle Personen stornieren';
-    stornierenButton.classList.add('btn', 'btn-primary', 'mx-auto', 'mt-3');
+    stornierenButton.innerText = 'Veranstaltung absagen und löschen';
+    stornierenButton.classList.add('btn', 'btn-danger', 'mx-auto', 'mt-3');
     stornierenButton.style.width = 'fit-content';
     stornierenButton.id = 'alleStornieren';
 
@@ -273,7 +294,38 @@ function stornierAllUser(ids) {
     // Starte die Stornierung für den ersten Benutzer
     storniereNächstenBenutzer(0);
 }
+function displayUserDetails(userId) {
+    if (veranstaltungData) {
+        // Finde die Anmeldung mit der gegebenen Nutzer-ID im gespeicherten JSON-Objekt
+        const selectedAnmeldung = veranstaltungData.anmeldungen.find(anmeldung => String(anmeldung.id) === String(userId));
 
+
+        if (selectedAnmeldung) {
+            // Jetzt kannst du die Informationen des ausgewählten Nutzers darstellen
+            const userDetailsContainer = document.getElementById('userDetailsContainer');
+
+            const userDetailsHTML = `
+                <h2>Nutzerdetails:</h2>
+                <p>Vorname: ${selectedAnmeldung.vornameAnzumeldendePerson || selectedAnmeldung.vorname || 'Nicht verfügbar'}</p>
+                <p>Nachname: ${selectedAnmeldung.nachnameAnzumeldendePerson || selectedAnmeldung.nachname || 'Nicht verfügbar'}</p>
+                <p>Geburtsdatum: ${selectedAnmeldung.geburtsdatumAnzumeldendePerson || selectedAnmeldung.geburtsdatum || 'Nicht verfügbar'}</p>
+                <!-- Weitere Informationen hier einfügen -->
+            `;
+
+            console.log(selectedAnmeldung)
+
+            // Füge den HTML-Inhalt dem Container hinzu
+            userDetailsContainer.innerHTML = userDetailsHTML;
+
+            // Zeige den Container an (du kannst auch CSS verwenden, um das Styling anzupassen)
+            userDetailsContainer.style.display = 'block';
+        } else {
+            console.error('Nutzer mit der ID ' + userId + ' nicht gefunden.');
+        }
+    } else {
+        console.error('JSON-Objekt ist nicht verfügbar. Stelle sicher, dass du die Daten zuerst abrufst.');
+    }
+}
 
 
 
