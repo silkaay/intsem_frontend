@@ -305,11 +305,20 @@ function displayUserDetails(userId) {
             const userDetailsContainer = document.getElementById('userDetailsContainer');
 
             const userDetailsHTML = `
-                <h2>Nutzerdetails:</h2>
-                <p>Vorname: ${selectedAnmeldung.vornameAnzumeldendePerson || selectedAnmeldung.vorname || 'Nicht verfügbar'}</p>
-                <p>Nachname: ${selectedAnmeldung.nachnameAnzumeldendePerson || selectedAnmeldung.nachname || 'Nicht verfügbar'}</p>
-                <p>Geburtsdatum: ${selectedAnmeldung.geburtsdatumAnzumeldendePerson || selectedAnmeldung.geburtsdatum || 'Nicht verfügbar'}</p>
-                <!-- Weitere Informationen hier einfügen -->
+            <div class="card">
+                    <div class="card-body">
+                    <h2>Nutzerdetails:</h2>
+                    <p>Vorname: ${selectedAnmeldung.vornameAnzumeldendePerson  || 'Nicht verfügbar'}</p>
+                    <p>Nachname: ${selectedAnmeldung.nachnameAnzumeldendePerson  || 'Nicht verfügbar'}</p>
+                    <p>Geburtsdatum: ${selectedAnmeldung.geburtsdatumAnzumeldendePerson  || 'Nicht verfügbar'}</p>
+    
+                    <p>Vorname: ${selectedAnmeldung.vorname || 'Nicht verfügbar'}</p>
+                    <p>Nachname: ${selectedAnmeldung.nachname || 'Nicht verfügbar'}</p>
+                    <p>Geburtsdatum: ${selectedAnmeldung.geburtsdatum || 'Nicht verfügbar'}</p>
+                    </div>
+                </div>
+                
+                
             `;
 
             console.log(selectedAnmeldung)
