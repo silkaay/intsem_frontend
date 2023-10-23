@@ -88,15 +88,14 @@ function showUserDetails(user) {
                     <div class="col-md-3"><p>Anschrift: </p></div>
                     <div class="col-md-9"><p>${user.anschrift.strasse} ${user.anschrift.hausnummer}, ${user.anschrift.plz} ${user.anschrift.ort}</p></div>
                 </div>
-                 
-                 
-                 
-                
-                 
-                
+         
                 <br>
-                <button class="btn btn-danger" onclick="redirectToDelete(${user.id})">Account Löschen</button>
-                <button class="btn" onclick="redirectToAdmin(${user.id})">zum Admin machen</button>
+                 <div class="row">
+                    <div class="col-md-9"> <button class="btn btn-danger" onclick="redirectToDelete(${user.id})">Account Löschen</button></div>
+                    <div class="col-md-3"><button class="btn" onclick="redirectToAdmin(${user.id})">zum Admin machen</button></div>
+                </div>
+                
+               
                 
                 <!-- Weitere Informationen hier hinzufügen -->
             </div>
