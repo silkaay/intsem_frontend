@@ -34,3 +34,29 @@ $(document).ready(function() {
     });
   });
   
+  function getLoggedInUser() {
+    fetch(`http://localhost:8080/getLoggedInUser`, {
+        method: 'POST',
+        credentials: 'include',
+    })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('vorname').value = data.vorname;
+            document.getElementById('nachname').value = data.nachname;
+            document.getElementById('straße').value = data.anschrift.strasse; 
+            document.getElementById('hausnummer').value = data.anschrift.hausnummer;
+            document.getElementById('postleitzahl').value = data.anschrift.plz;
+            document.getElementById('ort').value = data.anschrift.ort; 
+            document.getElementById('telefonnummer').value = data.telefonnummer;
+            document.getElementById('email').data = data.email;
+        })
+        .catch(error => {
+            console.error('Fehler beim Abrufen der Veranstaltungsgruppen-Details:', error);
+        });
+}
+
+getLoggedInUser();
+
+  function einschreiben () {
+    window.location.href = "../meineVeranstaltungen/meineVeranstaltungen.html";
+  }
