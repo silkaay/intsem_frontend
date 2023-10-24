@@ -4,8 +4,10 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchAllVeranstaltungsgruppen();
 });
 
-function goToEinschreiben () {
-    window.location.href = "./veranstaltungenEinschreiben.html";
+function goToEinschreiben (veranstaltungsID) {
+    var url = "./veranstaltungenEinschreiben.html?id=" + veranstaltungsID;
+    // Redirect to the new HTML page
+    window.location.href = url;
 }
 
 //Eventlistener für den "Veranstaltungen"-Button hinzufügen
@@ -242,7 +244,7 @@ function renderVeranstaltungsgruppenDetailsVeranstaltungen(veranstaltung) {
                                         <p class="card-text">Spätestens Anmelden bis: ${formatiereDatum(veranstaltung.anmeldefrist)}</p>
                                     </div>
                                     <div class="col-md-2 d-flex align-items-center">
-                                        <button type="button" class="btn"  data-id="${veranstaltung.id}" onclick="goToEinschreiben()">Anmelden</button>
+                                        <button type="button" class="btn"  data-id="${veranstaltung.id}" onclick="goToEinschreiben(${veranstaltung.id})">Anmelden</button>
                                     </div>
                               </div>
                               

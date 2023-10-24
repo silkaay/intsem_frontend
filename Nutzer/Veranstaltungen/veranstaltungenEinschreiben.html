@@ -81,7 +81,7 @@
               <div class="card">
                 <div class="card-header mit-lightblue mit-blue fw-bold">Kontaktdaten</div>
                 <div class="card-body">
-                  <form autocomplete="on">
+                  <form autocomplete="on" id="einschreibForm">
                     <div class="row">
                       <div class="mb-3 row">
                         <label for="vorname" class="col-sm-3 col-form-label">Vorname:</label>
@@ -154,7 +154,7 @@
                       <button type="button" class="btn btn-secondary" onclick="goToVer()">Zurück</button>
                     </div>
                     <div class="col-6 text-end">
-                      <button type="submit" class="btn btn-secondary btn-create" id="btn-payment" onclick="getLoggedInUser()">Weiter zur Bezahlung</button>
+                      <button type="submit" class="btn btn-secondary btn-create" id="btn-payment" onclick="einschreiben()">Weiter zur Bezahlung</button>
                     </div>
                   </div>
                 </div>
