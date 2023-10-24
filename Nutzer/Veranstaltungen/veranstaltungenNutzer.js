@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Deine Funktion hier aufrufen.
     fetchAllVeranstaltungsgruppen();
 });
+
+function goToEinschreiben () {
+    window.location.href = "./veranstaltungenEinschreiben.html";
+}
+
 //Eventlistener für den "Veranstaltungen"-Button hinzufügen
 document.addEventListener('click', function (event) {
     if (event.target && event.target.id === 'buttonVeranstaltungDetails') {
@@ -237,7 +242,7 @@ function renderVeranstaltungsgruppenDetailsVeranstaltungen(veranstaltung) {
                                         <p class="card-text">Spätestens Anmelden bis: ${formatiereDatum(veranstaltung.anmeldefrist)}</p>
                                     </div>
                                     <div class="col-md-2 d-flex align-items-center">
-                                        <button type="button" class="btn"  data-id="${veranstaltung.id}">Anmelden</button>
+                                        <button type="button" class="btn"  data-id="${veranstaltung.id}" onclick="goToEinschreiben()">Anmelden</button>
                                     </div>
                               </div>
                               

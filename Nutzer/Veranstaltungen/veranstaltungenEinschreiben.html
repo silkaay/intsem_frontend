@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../../Bilder/ZwingenbergWappen.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../../main.css">
+  <link rel="stylesheet" href="veranstaltungenEinschreiben.css">
+  <title>Veranstaltungen</title>
+</head>
+
+<body>
+  <!-- Header -->
+  <div class="jumbotron mit-lightblue text-center headpad position-relative">
+    <a class="position-absolute h6 top-0 end-0 m-3 mit-blue" id="a-deco" href="#" onclick="postLogout()">Logout <img src="../../Bilder/nutzer.png" alt="Nutzer icon" class="mit-head"></a>
+    <h1 class="display-5 fw-bold mit-blue">Veranstaltungen <img src="../../Bilder/ZwingenbergWappen.png"
+        alt="Zwingenberg Wappen" class="img-fluid align-middle mr-2 mit-head"> Zwingenberg</h1>
+  </div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-sm navbar-light py-sm-1">
+    <div class="container-fluid">
+      <!-- Hamburger-Menü -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Navigationslinks -->
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav w-100 justify-content-between">
+          <div class="mx-auto px-3"> <!-- Füge hier den linken und rechten Abstand hinzu -->
+            <a class="nav-link mit-active" aria-current="page" href="veranstaltungen.html">
+              <h6>Veranstaltungen</h6>
+            </a>
+          </div>
+          <div class="mx-auto px-3"> <!-- Füge hier den linken und rechten Abstand hinzu -->
+            <a class="nav-link " href="../meineVeranstaltungen/meineVeranstaltungen.html">
+              <h6>Meine Veranstaltungen</h6>
+            </a>
+          </div>
+          <div class="mx-auto px-3"> <!-- Füge hier den linken und rechten Abstand hinzu -->
+            <a class="nav-link " href="../Einstellungen/einstellungen.html">
+              <h6>Einstellungen</h6>
+            </a>
+          </div>
+          <div class="mx-auto px-3"> <!-- Füge hier den linken und rechten Abstand hinzu -->
+            <a class="nav-link" href="../impressum.html">
+              <h6>Impressum</h6>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!--Inhalt-->
+    <div class="container justify-content-center">
+      <div class="row" id="veranstaltungsgruppen">
+          <!-- Hier werden die Bootstrap Cards dynamisch eingefügt -->
+          <div class="mb-3 d-flex justify-content-around align-items-center">
+            <div class="form-check mr-2">
+              <input class="form-check-input" type="radio" name="standA" id="standard" value="Standard" checked>
+              <label class="form-check-label" for="standard">Standardanmeldung</label>
+          </div>
+          <div class="form-check ml-2">
+              <input class="form-check-input " type="radio" name="standA" id="andere" value="Andere">
+              <label class="form-check-label" for="andere">Ich melde eine andere Person an</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container justify-content-center">
+      <div class="container mt-5">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div id="clonedCardsContainer">
+              <div class="card">
+                <div class="card-header mit-lightblue mit-blue fw-bold">Kontaktdaten</div>
+                <div class="card-body">
+                  <form autocomplete="on">
+                    <div class="row">
+                      <div class="mb-3 row">
+                        <label for="vorname" class="col-sm-3 col-form-label">Vorname:</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="vorname" name="vorname" required>
+                        </div>
+                      </div>
+                      <div class="mb-3 row">
+                        <label for="nachname" class="col-sm-3 col-form-label">Nachname:</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="nachname" name="nachname" required>
+                        </div>
+                      </div>
+                      <div class="mb-3 row">
+                        <label for="straße" class="col-sm-3 col-form-label">Straße:</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="straße" name="straße" required>
+                        </div>
+                      </div>
+                      <div class="mb-3 row">
+                        <label for="hausnummer" class="col-sm-3 col-form-label">Hausnummer:</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="hausnummer" name="hausnummer" required>
+                        </div>
+                      </div>
+                      <div class="mb-3 row">
+                        <label for="postleitzahl" class="col-sm-3 col-form-label">Postleitzahl:</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="postleitzahl" name="postleitzahl" required>
+                        </div>
+                      </div>
+                      <div class="mb-3 row">
+                        <label for="ort" class="col-sm-3 col-form-label">Ort:</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="ort" name="ort" required>
+                        </div>
+                      </div>
+                      <div class="mb-3 row">
+                        <label for="telefonnummer" class="col-sm-3 col-form-label">Telefonnummer:</label>
+                        <div class="col-sm-9">
+                          <input type="tel" class="form-control" id="telefonnummer" name="telefonnummer" required>
+                        </div>
+                      </div>
+                      <div class="mb-3 row">
+                        <label for="email" class="col-sm-3 col-form-label">E-Mail:</label>
+                        <div class="col-sm-9">
+                          <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                      </div>
+                      <div class="mb-3 row">
+                        <label for="date" class="col-sm-3 col-form-label">Geburtsdatum:</label>
+                        <div class="col-sm-9">
+                          <input type="date" class="form-control" id="date" name="date" required>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="infos" class="form-label">Optionale Informationen (Allergien und Einschränkungen)</label>
+                        <textarea class="form-control" id="infos" rows="3"></textarea>
+                    </div>
+                    </div>
+                  </form>
+
+                  
+                    <!-- Form fields go here -->
+                    
+                </div>
+                <div class="card-footer">
+                  <div class="row justify-content-between">
+                    <div class="col-6">
+                      <button type="button" class="btn btn-secondary" onclick="goToVer()">Zurück</button>
+                    </div>
+                    <div class="col-6 text-end">
+                      <button type="submit" class="btn btn-secondary btn-create" id="btn-payment" onclick="getLoggedInUser()">Weiter zur Bezahlung</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-3">
+        <button type="button" class="btn btn-secondary btn-create" id="addPersonBtn">Weitere Person hinzufügen</button>
+      </div>
+    </div>
+
+
+  
+  <!--Inhalt Ende-->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="veranstaltungenEinschreiben.js"></script>
+  <script src="../../logout.js"></script>
+</body>
+
+</html>
