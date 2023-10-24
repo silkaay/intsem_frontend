@@ -1,4 +1,4 @@
-#buttonVeranstaltungDetails{
+#buttonVeranstaltungDetails,#buttonspeichern{
     background-color: #283b70;
     border-color: #283b70;
     color: white;
@@ -27,6 +27,13 @@
 #buttoneinzelveranstaltungLöschen{
     font-size: small;
     margin-right: 5%;
+}
+#veranstaltungsgruppeerstellen{
+    background-color: #283b70;
+    border-color: #283b70;
+    color: white;
+    margin-left: 3%;
+    margin-bottom: 0%;
 }
 .vertical-line {
     border-left: 2px solid lightgray; /* Ändere die Farbe und die Breite nach Bedarf */
