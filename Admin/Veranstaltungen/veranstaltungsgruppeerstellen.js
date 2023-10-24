@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     const createButton = document.getElementById('buttonspeichern');
     createButton.addEventListener('click', sendData);
@@ -21,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     fetch("http://localhost:8080/createVeranstaltungsgruppe", {
     method: 'POST',
+        credentials: "include",
     headers: {
     'Content-Type': 'application/json',
 },
@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Hier kannst du die Serverantwort verarbeiten
     console.log('Serverantwort:', responseData);
     // Umleiten oder andere Aktionen durchführen, wenn nötig
+            window.location.href = 'veranstaltungen.html';
+
 })
     .catch(error => {
     console.error('Fehler beim Senden der Daten:', error);
