@@ -333,7 +333,7 @@ function displayUserDetails(userId) {
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4>Anzumeldende Person</h4>
+                                <h4>Anzumeldende Person:</h4>
                                 <p>Vorname: ${selectedAnmeldung.vornameAnzumeldendePerson}</p>
                                 <p>Nachname: ${selectedAnmeldung.nachnameAnzumeldendePerson}</p>
                                 <p>Geburtsdatum: ${formatiereDatum(selectedAnmeldung.geburtsdatumAnzumeldendePerson)}</p>
