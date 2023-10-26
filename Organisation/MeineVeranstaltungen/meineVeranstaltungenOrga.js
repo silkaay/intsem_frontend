@@ -313,7 +313,7 @@ function displayUserDetails(userId) {
                             <h4>Kontaktdaten:</h4>
                             <p>Vorname: ${selectedAnmeldung.vorname || 'Nicht verfügbar'}</p>
                             <p>Nachname: ${selectedAnmeldung.nachname || 'Nicht verfügbar'}</p>
-                            <p>Geburtsdatum: ${selectedAnmeldung.geburtsdatum || 'Nicht verfügbar'}</p>
+                            <p>Geburtsdatum: ${formatiereDatum(selectedAnmeldung.geburtsdatum) || 'Nicht verfügbar'}</p>
                             <p class="card-text">Adresse: 
                                                     ${selectedAnmeldung.anschrift.strasse} 
                                                     ${selectedAnmeldung.anschrift.hausnummer},
@@ -336,7 +336,7 @@ function displayUserDetails(userId) {
                                 <h4>Anzumeldende Person</h4>
                                 <p>Vorname: ${selectedAnmeldung.vornameAnzumeldendePerson}</p>
                                 <p>Nachname: ${selectedAnmeldung.nachnameAnzumeldendePerson}</p>
-                                <p>Geburtsdatum: ${selectedAnmeldung.geburtsdatumAnzumeldendePerson}</p>
+                                <p>Geburtsdatum: ${formatiereDatum(selectedAnmeldung.geburtsdatumAnzumeldendePerson)}</p>
                                 <p>Zusätzliche Informationen: ${selectedAnmeldung.zusaetzlicheInfomationen}</p>
                             </div>
                         </div>
