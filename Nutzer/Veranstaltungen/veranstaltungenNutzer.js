@@ -79,7 +79,6 @@ function renderVeranstaltungsgruppen(veranstaltungsgruppen) {
               <div class="card mt-3">
                   <div class="row no-gutters">
                       <div class="col-md-2 d-flex align-items-center">
-                          <img src="${veranstaltungsgruppe.files}" class="card-img" alt="Bild">
                       </div>
                       <div class="col-md-7">
                           <div class="card-body">

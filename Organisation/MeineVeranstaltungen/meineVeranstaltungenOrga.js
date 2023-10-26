@@ -296,37 +296,57 @@ function stornierAllUser(ids) {
 }
 function displayUserDetails(userId) {
     if (veranstaltungData) {
-        // Finde die Anmeldung mit der gegebenen Nutzer-ID im gespeicherten JSON-Objekt
         const selectedAnmeldung = veranstaltungData.anmeldungen.find(anmeldung => String(anmeldung.id) === String(userId));
 
+        console.log(selectedAnmeldung);
 
         if (selectedAnmeldung) {
-            // Jetzt kannst du die Informationen des ausgewählten Nutzers darstellen
             const userDetailsContainer = document.getElementById('userDetailsContainer');
 
-            const userDetailsHTML = `
-            <div class="card">
-                    <div class="card-body">
-                    <h2>Nutzerdetails:</h2>
-                    <p>Vorname: ${selectedAnmeldung.vornameAnzumeldendePerson  || 'Nicht verfügbar'}</p>
-                    <p>Nachname: ${selectedAnmeldung.nachnameAnzumeldendePerson  || 'Nicht verfügbar'}</p>
-                    <p>Geburtsdatum: ${selectedAnmeldung.geburtsdatumAnzumeldendePerson  || 'Nicht verfügbar'}</p>
-    
-                    <p>Vorname: ${selectedAnmeldung.vorname || 'Nicht verfügbar'}</p>
-                    <p>Nachname: ${selectedAnmeldung.nachname || 'Nicht verfügbar'}</p>
-                    <p>Geburtsdatum: ${selectedAnmeldung.geburtsdatum || 'Nicht verfügbar'}</p>
+            // Initialisiere die userDetailsHTML-Variable
+            let userDetailsHTML = '<div class="row">'; // Öffne eine Bootstrap-Row
+
+            userDetailsHTML += `
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>Kontaktdaten:</h4>
+                            <p>Vorname: ${selectedAnmeldung.vorname || 'Nicht verfügbar'}</p>
+                            <p>Nachname: ${selectedAnmeldung.nachname || 'Nicht verfügbar'}</p>
+                            <p>Geburtsdatum: ${selectedAnmeldung.geburtsdatum || 'Nicht verfügbar'}</p>
+                            <p class="card-text">Adresse: 
+                                                    ${selectedAnmeldung.anschrift.strasse} 
+                                                    ${selectedAnmeldung.anschrift.hausnummer},
+                                                    ${selectedAnmeldung.anschrift.plz} 
+                                                    ${selectedAnmeldung.anschrift.ort}
+                            </p>
+                            <p>Geburtsdatum: ${selectedAnmeldung.email || 'Nicht verfügbar'}</p>
+                            
+
+                        </div>
                     </div>
                 </div>
-                
-                
             `;
 
-            console.log(selectedAnmeldung)
+            if (selectedAnmeldung.vornameAnzumeldendePerson !== null) {
+                userDetailsHTML += `
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Anzumeldende Person</h4>
+                                <p>Vorname: ${selectedAnmeldung.vornameAnzumeldendePerson}</p>
+                                <p>Nachname: ${selectedAnmeldung.nachnameAnzumeldendePerson}</p>
+                                <p>Geburtsdatum: ${selectedAnmeldung.geburtsdatumAnzumeldendePerson}</p>
+                                <p>Zusätzliche Informationen: ${selectedAnmeldung.zusaetzlicheInfomationen}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
 
-            // Füge den HTML-Inhalt dem Container hinzu
+            userDetailsHTML += '</div>'; // Schließe die Bootstrap-Row
+
             userDetailsContainer.innerHTML = userDetailsHTML;
-
-            // Zeige den Container an (du kannst auch CSS verwenden, um das Styling anzupassen)
             userDetailsContainer.style.display = 'block';
         } else {
             console.error('Nutzer mit der ID ' + userId + ' nicht gefunden.');
@@ -335,6 +355,5 @@ function displayUserDetails(userId) {
         console.error('JSON-Objekt ist nicht verfügbar. Stelle sicher, dass du die Daten zuerst abrufst.');
     }
 }
-
 
 
