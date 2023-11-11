@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../../Bilder/ZwingenbergWappen.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../../main.css">
+  <link rel="stylesheet" href="einstellungen.css">
+
+  <title>Einstellungen</title>
+</head>
+
+<body>
+  <div class="jumbotron mit-lightblue text-center headpad position-relative">
+    <a class="position-absolute h6 top-0 end-0 m-3 mit-blue" id="a-deco" href="#" onclick="postLogout()">Logout <img src="../../Bilder/nutzer.png" alt="Nutzer icon" class="mit-head"></a>
+    <h1 class="display-5 fw-bold mit-blue">Veranstaltungen <img src="../../Bilder/ZwingenbergWappen.png"
+        alt="Zwingenberg Wappen" class="img-fluid align-middle mr-2 mit-head"> Zwingenberg</h1>
+  </div>
+
+  <nav class="navbar navbar-expand-sm navbar-light py-sm-1">
+    <div class="container-fluid">
+      <!-- Hamburger-Menü -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Navigationslinks -->
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav w-100 justify-content-between">
+          <div class="mx-auto px-3"> <!-- Füge hier den linken und rechten Abstand hinzu -->
+            <a class="nav-link " aria-current="page" href="../Veranstaltungen/veranstaltungen.html">
+              <h6>Veranstaltungen</h6>
+            </a>
+          </div>
+          <div class="mx-auto px-3"> <!-- Füge hier den linken und rechten Abstand hinzu -->
+            <a class="nav-link" href="../meineVeranstaltungen/meineVeranstaltungen.html">
+              <h6>Meine Veranstaltungen</h6>
+            </a>
+          </div>
+          <div class="mx-auto px-3"> <!-- Füge hier den linken und rechten Abstand hinzu -->
+            <a class="nav-link mit-active" href="einstellungen.html">
+              <h6>Einstellungen</h6>
+            </a>
+          </div>
+          <div class="mx-auto px-3"> <!-- Füge hier den linken und rechten Abstand hinzu -->
+            <a class="nav-link" href="../Impressum/impressum.html">
+              <h6>Impressum</h6>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!--Inhalt-->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h2 class="card-title">Allgemeine Informationen</h2>
+            <p class="card-text" id="name"></p>
+            <p class="card-text" id="anschrift"></p>
+            <p class="card-text" id="vornameAnsprech"></p>
+            <p class="card-text" id="nachnameAnsprech"> </p>
+            <p class="card-text" id="telefonAnsprech"> </p>
+
+            <button id="buttonAllgInfoBearbeiten" type="button" class="btn btn-primary">Bearbeiten</button>
+          </div>
+        </div>
+          <div class="card mb-3">
+            <div class="card-body">
+              <h2 class="card-title">Passwort</h2>
+              <p class="card-text">Ein sicheres Passwort schützt Ihre Daten: </p>
+              <p class="card-text groeßererText">* * * * * * * * * * * *</p>
+              <button id="buttonPasswortaendern" type="button" class="btn btn-primary">Passwort ändern</button>
+            </div>
+          </div>
+      </div>
+   
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h2 class="card-title">Account Löschen</h2>
+            <p class="card-text">Bevor Sie fortfahren und Ihren Account löschen, ist es wichtig, die möglichen
+              Konsequenzen zu verstehen: <br>
+
+              Durch das Löschen Ihres Accounts gehen Sie das Risiko eines dauerhaften Datenverlustes ein. Alle mit Ihrem
+              Account verbundenen Daten, persönliche Informationen und Inhalte werden unwiderruflich gelöscht. Dies
+              schließt den Verlust des Zugangs zu den Diensten und Funktionen ein, die mit Ihrem Account verknüpft sind.
+
+              Bitte denken Sie sorgfältig über diese Konsequenzen nach, bevor Sie Ihren Account löschen. Wenn Sie Fragen
+              haben oder Unterstützung benötigen, stehen wir Ihnen gerne zur Verfügung.</p>
+            <form action="" id="accountLoeschenBestaetigung" class="mt-4">
+              <div class="form-group">
+                <label for="lpasswort">
+                  <H4>Passwort eingeben, um Löschung zu bestätigen</H4>
+                </label>
+                <input type="password" id="lpasswort" name="lpasswort" class="form-control custom-half-width"
+                  placeholder="Passwort">
+              </div>
+              <button id="buttonAccountLoeschen" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Account unwiderruflich
+                löschen</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title fs-5" id="staticBackdropLabel">Bestätigung</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Wollen Sie Ihren Account wirklich löschen?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zurück</button>
+        <button type="button" class="btn btn-danger">Account löschen</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!--Inhalt Ende-->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+  <script src="einstellungen.js"></script>
+  <script src="../../logout.js"></script>
+</body>
+
+</html>
