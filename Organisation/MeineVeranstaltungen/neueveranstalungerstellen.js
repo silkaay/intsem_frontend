@@ -3,10 +3,15 @@ function updateVeranstaltungsgruppenDropdown() {
     const dropdown = document.getElementById('gruppenid');
 
     // Mock-Aufruf des Endpunkts (ersetze dies durch einen echten Fetch-Aufruf)
-    fetch('http://localhost:8080/getAllVeranstaltungsgruppen')
+    fetch("http://localhost:8080/getAllVeranstaltungsgruppen", {
+        method: 'GET',
+        credentials: "include",
+    })
+
         .then(response => response.json())
         .then(data => {
             // Leere das Dropdown-Menü
+            console.log(data);
             dropdown.innerHTML = '';
 
             // Füge Optionen basierend auf den Daten hinzu
@@ -67,7 +72,7 @@ function sendData() {
         hausnummer: hausnummer,
         veranstaltungsgruppeId: veranstaltungsgruppenId
     };
-
+    console.log(data)
     fetch("http://localhost:8080/createVeranstaltung", {
         method: 'POST',
         credentials: "include",
@@ -81,10 +86,12 @@ function sendData() {
             // Hier kannst du die Serverantwort verarbeiten
             console.log('Serverantwort:', responseData);
             // Umleiten oder andere Aktionen durchführen, wenn nötig
-            window.location.href = 'meineVeranstaltungen.html';
+            //window.location.href = 'meineVeranstaltungen.html';
 
         })
         .catch(error => {
             console.error('Fehler beim Senden der Daten:', error);
         });
 }
+
+

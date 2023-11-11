@@ -78,7 +78,7 @@ function formatiereDatum(datum) {
 
 function rendermeineVeranstaltungen(veranstaltung) {
     const container = document.getElementById('meineveranstaltung');
-
+    console.log(veranstaltung);
     if (Array.isArray(veranstaltung)) {
         veranstaltung.forEach(veranstaltung => {
             if (veranstaltung.isVeroeffentlicht) {

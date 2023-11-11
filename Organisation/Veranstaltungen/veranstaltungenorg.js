@@ -73,7 +73,7 @@ function renderVeranstaltungsgruppen(veranstaltungsgruppen) {
                 const card = document.createElement('div');
                 card.classList.add('col-md-12');
                 card.innerHTML = `
-              <div class="card mt-3">
+              <div class="card mt-3 mb-1">
                   <div class="row no-gutters mt-3 mb-3 ">
                       <div class="col-md-1 d-flex align-items-center">
                          <!-- <img src="${veranstaltungsgruppe.files}" class="card-img" alt="Bild">-->
@@ -128,7 +128,7 @@ function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
         const gruppenCard = document.createElement('div');
         gruppenCard.classList.add('col-md-12');
         gruppenCard.innerHTML = `
-        <div class="card mt-3">
+        <div class="card mt-3 mb-1">
             <div class="row no-gutters">
                 <div class="col-md-2 d-flex align-items-center">
                     <!-- Hier kannst du ein Bild für die Veranstaltungsgruppe einfügen -->
@@ -151,7 +151,7 @@ function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
                 const card = document.createElement('div');
                 card.classList.add('col-md-12');
                 card.innerHTML = `
-                <div class="card mt-3">
+                <div class="card mt-3 mb-1">
     <div class="row no-gutters">
         <div class="col-md-2 d-flex align-items-center">
             <div class="d-flex flex-column align-items-center w-100">
@@ -170,7 +170,7 @@ function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
             </div>
         </div>
         <div class="col-md-2 d-flex align-items-center">
-            <button type="button" class="btn btn-secondary" id="buttoneinzelveranstaltungVeranstaltungDetails" data-id="${veranstaltung.id}">Details und Anmeldung</button>
+            <button type="button" class="btn btn-secondary" id="buttoneinzelveranstaltungVeranstaltungDetails" data-id="${veranstaltung.id}">Details</button>
         </div>
     </div>
 </div>
@@ -211,7 +211,7 @@ function renderVeranstaltungsgruppenDetailsVeranstaltungen(veranstaltung) {
     const card = document.createElement('div');
     card.classList.add('col-md-12');
     card.innerHTML = `
-              <div class="card mt-3" id="veranstaltungsdetailsansicht">
+              <div class="card mt-3 mb-3" id="veranstaltungsdetailsansicht">
                   <div class="row no-gutters">
                       <!--<div class="col-md-2 d-flex align-items-center">
                           <img src="${veranstaltung.files}" class="card-img" alt="Bild">
@@ -249,9 +249,7 @@ function renderVeranstaltungsgruppenDetailsVeranstaltungen(veranstaltung) {
                                     <div class="col-md-10">
                                         <p class="card-text"><b>Spätestens Anmelden bis:</b> ${formatiereDatum(veranstaltung.anmeldefrist)}</p>
                                     </div>
-                                    <div class="col-md-2 d-flex align-items-center">
-                                        <button type="button" class="btn btn-secondary" id="login">Anmelden</button>
-                                    </div>
+                                    
                               </div>
                               </div>
                              </div>
