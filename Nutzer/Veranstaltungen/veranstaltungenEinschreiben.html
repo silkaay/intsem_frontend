@@ -62,13 +62,13 @@
           <!-- Hier werden die Bootstrap Cards dynamisch eingefügt -->
           <div class="mb-3 d-flex justify-content-around align-items-center">
             <div class="form-check mr-2">
-              <input class="form-check-input" type="radio" name="standA" id="standard" value="Standard" checked>
-              <label class="form-check-label" for="standard">Standardanmeldung</label>
-          </div>
-          <div class="form-check ml-2">
-              <input class="form-check-input " type="radio" name="standA" id="andere" value="Andere">
-              <label class="form-check-label" for="andere">Ich melde eine andere Person an</label>
-          </div>
+              <input class="form-check-input" type="radio" name="standA" id="standardRDB" value="Standard" checked>
+              <label class="form-check-label" for="standardRDB">Standardanmeldung</label>
+            </div>
+            <div class="form-check ml-2">
+              <input class="form-check-input " type="radio" name="standA" id="andereRDB" value="Andere">
+              <label class="form-check-label" for="andereRDB">Ich melde eine andere Person an</label>
+            </div>
         </div>
       </div>
     </div>
@@ -77,7 +77,7 @@
       <div class="container mt-5">
         <div class="row justify-content-center">
           <div class="col-md-6">
-            <div id="clonedCardsContainer">
+            <div id="standard">
               <div class="card">
                 <div class="card-header mit-lightblue mit-blue fw-bold">Kontaktdaten</div>
                 <div class="card-body">
@@ -154,7 +154,7 @@
                       <button type="button" class="btn btn-secondary" onclick="goToVer()">Zurück</button>
                     </div>
                     <div class="col-6 text-end">
-                      <button type="submit" class="btn btn-secondary btn-create" id="btn-payment" onclick="einschreiben()">Weiter zur Bezahlung</button>
+                      <button type="submit" class="btn btn-secondary btn-create" id="btn-payment">Weiter zur Bezahlung</button>
                     </div>
                   </div>
                 </div>
@@ -164,7 +164,55 @@
         </div>
       </div>
 
-      <div class="text-center mt-3">
+      <div class="container justify-content-center">
+        <div class="container mt-5">
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <div id="andere">
+                <div class="card">
+                  <div class="card-header mit-lightblue mit-blue fw-bold">Anzumeldende Person</div>
+                  <div class="card-body">
+                    <form autocomplete="on" id="einschreibForm">
+                      <div class="row">
+                        <div class="mb-3 row">
+                          <label for="andereVorname" class="col-sm-3 col-form-label">Vorname der anzumeldenden Person:</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" id="andereVorname" name="andereVorname" required>
+                          </div>
+                        </div>
+                        <div class="mb-3 row">
+                          <label for="andereNachname" class="col-sm-3 col-form-label">Nachname der anzumeldenden Person:</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" id="andereNachname" name="andereNachname" required>
+                          </div>
+                        </div>
+                        <div class="mb-3 row">
+                          <label for="andereDate" class="col-sm-3 col-form-label">Geburtsdatum:</label>
+                          <div class="col-sm-9">
+                            <input type="date" class="form-control" id="andereDate" name="andereDate" required>
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="andereInfos" class="form-label">Optionale Informationen (Allergien und Einschränkungen)</label>
+                          <textarea class="form-control" id="andereInfos" rows="3"></textarea>
+                      </div>
+                      </div>
+                    </form>
+  
+                    
+                      <!-- Form fields go here -->
+                      
+                  </div>
+                  <div class="card-footer">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="text-center mt-3" id="andere">
         <button type="button" class="btn btn-secondary btn-create" id="addPersonBtn">Weitere Person hinzufügen</button>
       </div>
     </div>
