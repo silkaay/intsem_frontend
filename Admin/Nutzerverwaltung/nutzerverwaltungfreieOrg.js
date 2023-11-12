@@ -42,7 +42,7 @@ function renderAllefreieOrg(users) {
                         </div>
                     </div>
                     <div class="col-md-2 d-flex flex-column align-items-center justify-content-center">
-                        <button type="button" class="btn btn-primary details-button">Details</button>
+                        <button type="button" class="btn btn-secondary details-button">Details</button>
                     </div>
                 </div>
             </div>

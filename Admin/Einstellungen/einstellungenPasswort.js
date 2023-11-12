@@ -54,7 +54,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Set a timer to hide the success message after 3 seconds (3000 milliseconds)
                     setTimeout(function() {
                         successMessage.style.display = 'none';
-                    }, 3000);
+                        window.location.href='einstellungen.html';
+                    }, 2000);
+
                 } else {
                     // Error during password change
                     errorMessage.style.display = 'block';

@@ -38,7 +38,7 @@ h2,p,b{
 .row{
     margin-right: 0%;
 }
-#buttonAllgInfoBearbeiten{
+#buttonAllgInfoBearbeiten,#aenderungspeichern{
     margin: 2%;
     background-color: #283b70;
     border-color: #283b70;

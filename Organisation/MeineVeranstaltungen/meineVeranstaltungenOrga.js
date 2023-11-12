@@ -182,7 +182,7 @@ function rendermeineVeranstaltungEinzel(veranstaltung) {
     const mainCard = document.createElement('div');
     mainCard.classList.add('col-md-12');
     mainCard.innerHTML = `
-            <div class="card mt-3" id="veranstaltungsdetailsansicht">
+            <div class="card mt-3 mb-3" id="veranstaltungsdetailsansicht">
                   <div class="row no-gutters">
                       <!--<div class="col-md-2 d-flex align-items-center">
                           <img src="${veranstaltung.files}" class="card-img" alt="Bild">
@@ -217,10 +217,11 @@ function rendermeineVeranstaltungEinzel(veranstaltung) {
                               
                               
                               <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md-6">
                                         <p class="card-text"><b>Spätestens Anmelden bis:</b> ${formatiereDatum(veranstaltung.anmeldefrist)}</p>
                                     </div>
-                                    <div class="col-md-4 d-flex align-items-center">
+                                    <div class="col-md-6 d-flex align-items-center">
+                                        <button type="button" class="btn btn-secondary mx-2" id="veranstaltungbearbeiten" onclick="EditVeranstaltung(${veranstaltung.id})" data-id="${veranstaltung.id}">Veranstaltung bearbeiten</button>
                                         <button type="button" class="btn btn-danger mx-2" id="veranstaltungloeschen" onclick="deleteVeranstaltung(${veranstaltung.id})" data-id="${veranstaltung.id}">Veranstaltung Absagen und löschen</button>
                                     </div>
                               </div>
@@ -465,4 +466,8 @@ function deleteVeranstaltung(id){
             console.error('Fehler bei der Anforderung:', error);
         });
 
+}
+
+function EditVeranstaltung(id){
+    window.location.href = `veranstaltungbearbeiten.html?id=${id}`;
 }

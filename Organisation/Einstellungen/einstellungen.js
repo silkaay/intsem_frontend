@@ -18,6 +18,7 @@ function getLoggedInUser() {
         .then(response => response.json())
         .then(data => {
             document.getElementById("name").textContent = "Name: " + data.name;
+            document.getElementById("email").textContent = "Email: " + data.email;
             document.getElementById("anschrift").textContent = "Anschrift: " + data.anschrift.strasse + " " + data.anschrift.hausnummer + ", " + data.anschrift.plz + " " + data.anschrift.ort;
             document.getElementById("vornameAnsprech").textContent = "Vorname Ansprechpartner: " + data.ansprechpartnerVorname;
             document.getElementById("nachnameAnsprech").textContent = "Nachname Ansprechpartner: " + data.ansprechpartnerNachname;
