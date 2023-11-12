@@ -217,11 +217,11 @@ function rendermeineVeranstaltungEinzel(veranstaltung) {
                               
                               
                               <div class="row">
-                                    <div class="col-md-10">
+                                    <div class="col-md-8">
                                         <p class="card-text"><b>Spätestens Anmelden bis:</b> ${formatiereDatum(veranstaltung.anmeldefrist)}</p>
                                     </div>
-                                    <div class="col-md-2 d-flex align-items-center">
-                                        
+                                    <div class="col-md-4 d-flex align-items-center">
+                                        <button type="button" class="btn btn-danger mx-2" id="veranstaltungloeschen" onclick="deleteVeranstaltung(${veranstaltung.id})" data-id="${veranstaltung.id}">Veranstaltung Absagen und löschen</button>
                                     </div>
                               </div>
                               </div>
@@ -235,10 +235,12 @@ function rendermeineVeranstaltungEinzel(veranstaltung) {
           
           `;
 
+
     // Hinzufügen der Haupt-Veranstaltungs-Card zur Container-Div
     container.appendChild(mainCard);
 
     const anmeldungen = veranstaltung.anmeldungen;
+
 
     const anmeldungenContainer = document.createElement('div');
     anmeldungenContainer.classList.add('row');
@@ -253,29 +255,29 @@ function rendermeineVeranstaltungEinzel(veranstaltung) {
 
 
         anmeldungCard.innerHTML = `
-<div class="card mt-3">
-    <div class="row">
-        <div class="col-md-3 d-flex align-items-center mt-3 mb-3">
-            <div class="d-flex flex-column align-items-center w-100 mt-3 mb-3">
-                <p class="card-text">${vorname}</p>
-                <p class="card-text">${nachname}</p>
+            <div class="card mt-3 mb-2">
+                <div class="row">
+                    <div class="col-md-3 d-flex align-items-center mt-3 mb-3">
+                        <div class="d-flex flex-column align-items-center w-100 mt-3 mb-3">
+                            <p class="card-text">${vorname}</p>
+                            <p class="card-text">${nachname}</p>
+                        </div>
+                        <div class="vertical-line"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-body ">
+                        <div class="d-flex flex-column align-items-center w-100 mt-3 mb-3">
+                            <p class="card-text"> Geburtstadatum: ${geburtsdatum}</p>
+                        </div>    
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center">
+                        <button type="button" class="btn btn-danger mx-2" id="einzelStornieren" data-id="${anmeldung.id}">Entfernen</button>
+                        <button type="button" class="btn btn-secondary mx-2" id="personDetails" data-id="${anmeldung.id}">Details</button>
+                    </div>
+                </div>
             </div>
-            <div class="vertical-line"></div>
-        </div>
-        <div class="col-md-4">
-            <div class="card-body ">
-            <div class="d-flex flex-column align-items-center w-100 mt-3 mb-3">
-                <p class="card-text"> Geburtstadatum: ${geburtsdatum}</p>
-            </div>    
-            </div>
-        </div>
-        <div class="col-md-4 d-flex align-items-center">
-            <button type="button" class="btn btn-danger mx-2" id="einzelStornieren" data-id="${anmeldung.id}">Entfernen</button>
-            <button type="button" class="btn btn-secondary mx-2" id="personDetails" data-id="${anmeldung.id}">Details</button>
-        </div>
-    </div>
-</div>
-`;
+            `;
 
         // Hinzufügen der Anmeldungs-Card zur Container-Div für Anmeldungen
         anmeldungenContainer.appendChild(anmeldungCard);
@@ -287,18 +289,23 @@ function rendermeineVeranstaltungEinzel(veranstaltung) {
     container.appendChild(anmeldungenContainer);
 
     // Button "Alle Personen stornieren" am Ende hinzufügen
-    const stornierenButton = document.createElement('button');
-    stornierenButton.innerText = 'Veranstaltung absagen und löschen';
-    stornierenButton.classList.add('btn', 'btn-danger', 'mx-auto', 'mt-3', 'mb-3');
-    stornierenButton.style.width = 'fit-content';
-    stornierenButton.id = 'alleStornieren';
+    if (anmeldungen.length >= 2) {
+        // Erstelle den Button nur, wenn zwei oder mehr Anmeldungen vorhanden sind
+        const stornierenButton = document.createElement('button');
+        stornierenButton.innerText = 'Alle Entfernen';
+        stornierenButton.classList.add('btn', 'btn-danger', 'mx-auto', 'mt-3', 'mb-3');
+        stornierenButton.style.width = 'fit-content';
+        stornierenButton.id = 'alleStornieren';
+
+        container.appendChild(stornierenButton);
+    }
 
     anmeldungen.forEach((anmeldung, index) => {
         anmeldungCard = anmeldungenContainer.children[index];
         anmeldungCard.querySelector('#einzelStornieren').setAttribute('data-id', anmeldung.id);
     });
     // Hinzufügen des Buttons zur Haupt-Container-Div
-    container.appendChild(stornierenButton);
+    //container.appendChild(stornierenButton);
 
 }
 
@@ -433,4 +440,29 @@ function redirectToRelease(veranstaltungsId) {
             // Fehler bei der Anforderung
             console.error('Fehler bei der Anforderung:', error);
         });
+}
+
+
+function deleteVeranstaltung(id){
+    const releaseUrl = `http://localhost:8080/deleteVeranstaltung/${id}`;
+
+    // Konfigurieren Sie die fetch-Anforderung für POST
+    fetch(releaseUrl, {
+        method: 'DELETE',
+        credentials: 'include',
+    })
+        .then(response => {
+            if (response.ok) {
+                // Erfolgreiche Antwort
+                //location.reload(); // Seite neu laden
+            } else {
+                // Fehlerhafte Antwort
+                console.error('Fehler bei der Anforderung:', response.status, response.statusText);
+            }
+        })
+        .catch(error => {
+            // Fehler bei der Anforderung
+            console.error('Fehler bei der Anforderung:', error);
+        });
+
 }
