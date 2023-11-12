@@ -130,13 +130,13 @@ function renderVeranstaltungsgruppenDetails(veranstaltungsgruppen) {
         gruppenCard.innerHTML = `
         <div class="card mt-3 mb-1">
             <div class="row no-gutters">
-                <div class="col-md-2 d-flex align-items-center">
-                    <!-- Hier kannst du ein Bild für die Veranstaltungsgruppe einfügen -->
-                </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h3 class="card-title">${veranstaltungsgruppen.titel} vom ${formatiereDatum(veranstaltungsgruppen.anfangszeitpunkt)} - ${formatiereDatum(veranstaltungsgruppen.endzeitpunkt)}</h3>
-                            <p class="card-text">${veranstaltungsgruppen.beschreibung}</p>
+               <!-- <div class="col-md-2 d-flex align-items-center">
+                   
+                </div>-->
+                    <div class="col-md-12">
+                        <div class="card-body align-items-center">
+                            <h3 class="card-title zentrierung"  >${veranstaltungsgruppen.titel} vom ${formatiereDatum(veranstaltungsgruppen.anfangszeitpunkt)} - ${formatiereDatum(veranstaltungsgruppen.endzeitpunkt)}</h3>
+                            <p class="card-text zentrierung">${veranstaltungsgruppen.beschreibung}</p>
                         </div>
                     </div>
             </div>

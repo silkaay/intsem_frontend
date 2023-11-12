@@ -86,7 +86,7 @@ function sendData() {
             // Hier kannst du die Serverantwort verarbeiten
             console.log('Serverantwort:', responseData);
             // Umleiten oder andere Aktionen durchführen, wenn nötig
-            //window.location.href = 'meineVeranstaltungen.html';
+            window.location.href = 'meineVeranstaltungen.html';
 
         })
         .catch(error => {

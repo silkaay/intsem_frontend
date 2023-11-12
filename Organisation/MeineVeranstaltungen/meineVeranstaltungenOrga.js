@@ -97,15 +97,15 @@ function rendermeineVeranstaltungen(veranstaltung) {
                         </div>
                         <div class="vertical-line"></div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                         <div class="card-body">
                             <h3 class="card-title">${veranstaltung.titel}</h3>
                             <p class="card-text">${veranstaltung.beschreibung}</p>
                             <p class="card-text">Stornieren bis ${formatiereDatum(veranstaltung.anmeldefrist)} möglich</p>
                         </div>
                     </div>
-                    <div class="col-md-2 d-flex align-items-center">
-                        <button type="button" class="btn btn-primary" id="buttonmeineVeranstaltungDetails" data-id="${veranstaltung.id}">Details und Stornierung</button>
+                    <div class="col-md-2 d-flex flex-column align-items-center">
+                        <button type="button" class="btn btn-secondary mt-5 mb-2" id="buttonmeineVeranstaltungDetails" data-id="${veranstaltung.id}">Details und Stornierung</button>
                     </div>
                 </div>
             </div>
@@ -135,12 +135,10 @@ function rendermeineVeranstaltungen(veranstaltung) {
                             <p class="card-text">Stornieren bis ${formatiereDatum(veranstaltung.anmeldefrist)} möglich</p>
                         </div>
                     </div>
-                    <div class="col-md-3 align-items-center">
-                  
-                            <button type="button" class="btn btn-primary mt-3 mb-3 mr-3 " id="buttonmeineVeranstaltungDetails" data-id="${veranstaltung.id}">Details und Stornierung</button>
-                       <br>
-                        <button type="button" class="btn btn-success mt-3 mb-3" id="buttonmeineVeranstaltungfreigeben" onclick="redirectToRelease(${veranstaltung.id})">Freigeben</button>
-                        
+                    <div class="col-md-2 d-flex flex-column align-items-center">
+                        <button type="button" class="btn btn-secondary mt-5 mb-3 mr-3" id="buttonmeineVeranstaltungDetails" data-id="${veranstaltung.id}">Details und Stornierung</button>
+                    
+                        <button type="button" class="btn btn-success mb-3" id="buttonmeineVeranstaltungfreigeben" onclick="redirectToRelease(${veranstaltung.id})">Freigeben</button>
                     </div>
                 </div>
             </div>
@@ -257,21 +255,23 @@ function rendermeineVeranstaltungEinzel(veranstaltung) {
         anmeldungCard.innerHTML = `
 <div class="card mt-3">
     <div class="row">
-        <div class="col-md-2 d-flex align-items-center">
-            <div class="d-flex flex-column align-items-center w-100">
+        <div class="col-md-3 d-flex align-items-center mt-3 mb-3">
+            <div class="d-flex flex-column align-items-center w-100 mt-3 mb-3">
                 <p class="card-text">${vorname}</p>
                 <p class="card-text">${nachname}</p>
             </div>
             <div class="vertical-line"></div>
         </div>
         <div class="col-md-4">
-            <div class="card-body">
-                <p class="card-text">${geburtsdatum}</p>
+            <div class="card-body ">
+            <div class="d-flex flex-column align-items-center w-100 mt-3 mb-3">
+                <p class="card-text"> Geburtstadatum: ${geburtsdatum}</p>
+            </div>    
             </div>
         </div>
         <div class="col-md-4 d-flex align-items-center">
             <button type="button" class="btn btn-danger mx-2" id="einzelStornieren" data-id="${anmeldung.id}">Entfernen</button>
-            <button type="button" class="btn btn-primary mx-2" id="personDetails" data-id="${anmeldung.id}">Details</button>
+            <button type="button" class="btn btn-secondary mx-2" id="personDetails" data-id="${anmeldung.id}">Details</button>
         </div>
     </div>
 </div>
@@ -289,7 +289,7 @@ function rendermeineVeranstaltungEinzel(veranstaltung) {
     // Button "Alle Personen stornieren" am Ende hinzufügen
     const stornierenButton = document.createElement('button');
     stornierenButton.innerText = 'Veranstaltung absagen und löschen';
-    stornierenButton.classList.add('btn', 'btn-danger', 'mx-auto', 'mt-3');
+    stornierenButton.classList.add('btn', 'btn-danger', 'mx-auto', 'mt-3', 'mb-3');
     stornierenButton.style.width = 'fit-content';
     stornierenButton.id = 'alleStornieren';
 

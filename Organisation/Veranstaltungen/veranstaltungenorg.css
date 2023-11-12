@@ -30,6 +30,6 @@
     color: #283b70;
     font-size: x-large;
 }
-#veranstaltungsdetailstitel{
+#veranstaltungsdetailstitel,.zentrierung{
     text-align: center;
 }
