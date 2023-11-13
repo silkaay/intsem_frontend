@@ -28,3 +28,31 @@ function getLoggedInUser() {
             console.error('Fehler beim Abrufen der Veranstaltungsgruppen-Details:', error);
         });
 }
+
+document.getElementById("AccountLoeschen").addEventListener("click", function() {
+    accountloeschen();
+});
+
+function accountloeschen(){
+    const releaseUrl = `http://localhost:8080/deleteAccount`;
+
+    // Konfigurieren Sie die fetch-Anforderung für POST
+    fetch(releaseUrl, {
+        method: 'POST',
+        credentials: 'include',
+    })
+        .then(response => {
+            if (response.ok) {
+                // Erfolgreiche Antwort
+                window.location.href = "../../Nichteingeloggt/veranstaltungen.html"; // Seite neu laden
+            } else {
+                // Fehlerhafte Antwort
+                console.error('Fehler bei der Anforderung:', response.status, response.statusText);
+            }
+        })
+        .catch(error => {
+            // Fehler bei der Anforderung
+            console.error('Fehler bei der Anforderung:', error);
+        });
+
+}

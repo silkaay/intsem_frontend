@@ -36,3 +36,6 @@
     border-color: #283b70;
     color: white;
 }
+#veranstaltungsdetailstitel,.zentrierung{
+    text-align: center;
+}

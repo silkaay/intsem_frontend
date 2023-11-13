@@ -250,6 +250,7 @@ function makeFetchRequest(vorname, nachname, straße, hausnummer, postleitzahl, 
         .then(data => {
             // Handle the response data as needed
             console.log('Success:', data);
+            window.location.href = '../meineVeranstaltungen/meineVeranstaltungen.html'
             // You might want to redirect here or update the UI accordingly
         })
         .catch(error => {
