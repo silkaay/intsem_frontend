@@ -186,7 +186,6 @@ $('#btn-payment').click(function () {
     var datum = document.getElementById("date").value;
     var infos = document.getElementById("infos").value;
 
-
     // Check if there are dynamically added cards
     var clonedCards = $('.card:gt(0)');
 
