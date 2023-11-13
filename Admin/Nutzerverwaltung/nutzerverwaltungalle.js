@@ -92,7 +92,7 @@ function showUserDetails(user) {
                 <br>
                  <div class="row">
                     <div class="col-md-9"> <button class="btn btn-danger" onclick="redirectToDelete(${user.id})">Account Löschen</button></div>
-                    <div class="col-md-3"><button class="btn" onclick="redirectToAdmin(${user.id})">zum Admin machen</button></div>
+                    <div class="col-md-3"><button class="btn" onclick="redirectToAdmin(${user.id})">Zum Admin machen</button></div>
                 </div>
                 
                
@@ -109,49 +109,65 @@ function showUserDetails(user) {
 }
 
 function redirectToDelete(userId) {
-    // Erstelle die URL mit der übergebenen VeranstaltungsgruppenId
-    const releaseUrl = `http://localhost:8080/deleteAccount/${userId}`;
+    // Show the delete account modal
+    const deleteAccountModal = new bootstrap.Modal(document.getElementById('deleteAccountModal'));
+    deleteAccountModal.show();
 
-    // Konfigurieren Sie die fetch-Anforderung für POST
-    fetch(releaseUrl, {
-        method: 'DELETE',
-        credentials: 'include',
-    })
-        .then(response => {
-            if (response.ok) {
-                // Erfolgreiche Antwort
-                location.reload(); // Seite neu laden
-            } else {
-                // Fehlerhafte Antwort
-                console.error('Fehler bei der Anforderung:', response.status, response.statusText);
-            }
+    // Handle delete action when the user confirms
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+    confirmDeleteBtn.addEventListener('click', function () {
+        // Call the delete account endpoint
+        const releaseUrl = `http://localhost:8080/deleteAccount/${userId}`;
+
+        fetch(releaseUrl, {
+            method: 'DELETE',
+            credentials: 'include',
         })
-        .catch(error => {
-            // Fehler bei der Anforderung
-            console.error('Fehler bei der Anforderung:', error);
-        });
+            .then(response => {
+                if (response.ok) {
+                    // Successful response
+                    location.reload(); // Reload the page
+                } else {
+                    // Error response
+                    console.error('Fehler bei der Anforderung:', response.status, response.statusText);
+                }
+            })
+            .catch(error => {
+                // Error in the request
+                console.error('Fehler bei der Anforderung:', error);
+            });
+    });
 }
 
 function redirectToAdmin(userId) {
-    // Erstelle die URL mit der übergebenen VeranstaltungsgruppenId
-    const releaseUrl = `http://localhost:8080/changeRole/${userId}`;
+    // Show the admin modal
+    const adminModal = new bootstrap.Modal(document.getElementById('adminModal'));
+    adminModal.show();
 
-    // Konfigurieren Sie die fetch-Anforderung für POST
-    fetch(releaseUrl, {
-        method: 'POST',
-        credentials: 'include',
-    })
-        .then(response => {
-            if (response.ok) {
-                // Erfolgreiche Antwort
-                location.reload(); // Seite neu laden
-            } else {
-                // Fehlerhafte Antwort
-                console.error('Fehler bei der Anforderung:', response.status, response.statusText);
-            }
+    // Handle admin role change when the user confirms
+    const confirmAdminBtn = document.getElementById('confirmAdminBtn');
+    confirmAdminBtn.addEventListener('click', function () {
+        // Call the change role endpoint
+        const releaseUrl = `http://localhost:8080/changeRole/${userId}`;
+
+        fetch(releaseUrl, {
+            method: 'POST',
+            credentials: 'include',
         })
-        .catch(error => {
-            // Fehler bei der Anforderung
-            console.error('Fehler bei der Anforderung:', error);
-        });
+            .then(response => {
+                if (response.ok) {
+                    // Successful response
+                    location.reload(); // Reload the page
+                } else {
+                    // Error response
+                    console.error('Fehler bei der Anforderung:', response.status, response.statusText);
+                }
+            })
+            .catch(error => {
+                // Error in the request
+                console.error('Fehler bei der Anforderung:', error);
+            });
+    });
 }
+
+

@@ -77,6 +77,42 @@
             </div>
         </div>
 
+        <div class="modal fade" id="deleteAccountModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title fs-5" id="staticBackdropLabel">Account löschen</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Möchten Sie den Account wirklich löschen?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zurück</button>
+                        <button type="button" id="confirmDeleteBtn" class="btn btn-danger" >Account löschen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="adminModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title fs-5" id="staticBackdropLabel">Nutzer zu Admin machen</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Sind Sie sich sicher, dass Sie den Nutzer zu einem Admin machen wollen?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zurück</button>
+                        <button type="button" id="confirmAdminBtn" class="btn btn-secondary" >Fortfahren</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
         <script src="nutzerverwaltungalle.js"></script>
       <script src="../../logout.js"></script>
