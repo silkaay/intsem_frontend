@@ -73,22 +73,33 @@ function deleteeinzelVeranstaltung(id) {
     });
 }
 
+
 function deleteVeranstaltungsgruppe(id) {
-    fetch(`http://localhost:8080/deleteVeranstaltungsgruppe/${id}`, {
-        method: 'DELETE',
-        credentials: 'include',
-    })
-    .then(response => {
-        if (response.ok) {
-            // Successful response
-            location.reload(); // Reload the page
-        }
-        return response.json();
-    })
-    .catch(error => {
-        console.error('Fehler beim Löschen der Veranstaltungsgruppe:', error);
+    const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    deleteModal.show();
+
+    // Handle delete action when the user confirms
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+    confirmDeleteBtn.addEventListener('click', function () {
+        fetch(`http://localhost:8080/deleteVeranstaltungsgruppe/${id}`, {
+            method: 'DELETE',
+            credentials: 'include',
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Successful response
+                    location.reload(); // Reload the page
+                }
+                return response.json();
+            })
+            .catch(error => {
+                console.error('Fehler beim Löschen der Veranstaltungsgruppe:', error);
+            });
     });
 }
+
+
+
 
 
 function fetchAllVeranstaltungsgruppen() {

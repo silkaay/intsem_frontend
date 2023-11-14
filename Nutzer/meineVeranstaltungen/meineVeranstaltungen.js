@@ -247,49 +247,64 @@ const geburtsdatum = anmeldung.geburtsdatumAnzumeldendePerson !== null ? formati
 
 
 function stonierThisUser(id) {
-    fetch(`http://localhost:8080/deleteAnmeldung/${id}`, {
-        method: 'DELETE',
-        credentials: 'include',
-    })
-        .then(response => {
-            if (response.ok) {
-                // Successful response
-                location.reload(); // Reload the page
-            }
-            return response.json();
+    // Show the delete account modal
+    const deleteModal = new bootstrap.Modal(document.getElementById('stornoModal'));
+    deleteModal.show();
+
+    // Handle delete action when the user confirms
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+    confirmDeleteBtn.addEventListener('click', function () {
+        fetch(`http://localhost:8080/deleteAnmeldung/${id}`, {
+            method: 'DELETE',
+            credentials: 'include',
         })
-        .catch(error => {
-            console.error('Fehler beim Löschen der Veranstaltungsgruppe:', error);
-        });
+            .then(response => {
+                if (response.ok) {
+                    // Successful response
+                    location.reload(); // Reload the page
+                }
+                return response.json();
+            })
+            .catch(error => {
+                console.error('Fehler beim Löschen der Veranstaltungsgruppe:', error);
+            });
+    });
 }
 
 function stornierAllUser(ids) {
-    const storniereNächstenBenutzer = (index) => {
-        if (index < ids.length) {
-            const id = ids[index];
-            fetch(`http://localhost:8080/deleteAnmeldung/${id}`, {
-                method: 'DELETE',
-                credentials: 'include',
-            })
-                .then(response => {
-                    if (response.ok) {
-                        // Erfolgreiche Antwort, lösche den Benutzer
-                        storniereNächstenBenutzer(index + 1);
-                    } else {
-                        console.error('Fehler beim Löschen der Anmeldung:', response);
-                    }
-                })
-                .catch(error => {
-                    console.error('Fehler beim Löschen der Anmeldung:', error);
-                });
-        } else {
-            // Alle Benutzer wurden gelöscht
-            location.reload(); // Seite neu laden oder andere Aktionen durchführen
-        }
-    };
+    const deleteModal = new bootstrap.Modal(document.getElementById('stornoModalAll'));
+    deleteModal.show();
 
-    // Starte die Stornierung für den ersten Benutzer
-    storniereNächstenBenutzer(0);
+    // Handle delete action when the user confirms
+    const confirmDeleteBtn = document.getElementById('confirmDeleteAllBtn');
+    confirmDeleteBtn.addEventListener('click', function () {
+        const storniereNächstenBenutzer = (index) => {
+            if (index < ids.length) {
+                const id = ids[index];
+                fetch(`http://localhost:8080/deleteAnmeldung/${id}`, {
+                    method: 'DELETE',
+                    credentials: 'include',
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // Erfolgreiche Antwort, lösche den Benutzer
+                            storniereNächstenBenutzer(index + 1);
+                        } else {
+                            console.error('Fehler beim Löschen der Anmeldung:', response);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Fehler beim Löschen der Anmeldung:', error);
+                    });
+            } else {
+                // Alle Benutzer wurden gelöscht
+                location.reload(); // Seite neu laden oder andere Aktionen durchführen
+            }
+        };
+
+        // Starte die Stornierung für den ersten Benutzer
+        storniereNächstenBenutzer(0);
+    });
 }
 
 
